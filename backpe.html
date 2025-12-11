@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>MatiasXp
+<title>B.O.P.C + PRISÃO — Painel Civil (versão fixa)</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- VARIÁVEIS ---------- */
+:root{
+  --bg1:#050507;
+  --bg2:#14001f;
+  --card:#0d0a10;
+  --accent:#a970ff;
+  --muted:#c6bfd6;
+  --glass:rgba(255,255,255,0.04);
+  --danger:#ff6b6b;
+
+  /* tipografia */
+  --font-base:1rem;
+  --font-lg:1.125rem;
+  --font-xl:1.5rem;
+
+  /* cantos / espaçamentos */
+  --radius:10px;
+  --card-border:#1a0f2b;
+  --text:#e0e0e0;
+
+  /* gradiente de fundo */
+  --bg-gradient:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 100%);
+}
+
+/* ---------- RESET ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+
+/* ---------- GERAL ---------- */
+body{
+  background:var(--bg-gradient);
+  background-attachment:fixed;
+  background-size:100% 100%;
+  color:var(--muted);
+  font-family:'Inter',sans-serif;
+  padding:20px;
+}
+.wrap{max-width:1180px;margin:0 auto}
+
+/* ---------- HEADER ---------- */
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+}
+h1{
+  font-family:Montserrat,Inter;
+  font-weight:700;
+  font-size:var(--font-xl);
+  color:var(--accent);
+}
+
+/* ---------- TABS ---------- */
+.tabs{
+  display:flex;
+  gap:10px;
+}
+.nav-tab{
+  padding:9px 14px;
+  border-radius:10px;
+  border:1px solid var(--glass);
+  background:transparent;
+  cursor:pointer;
+  color:var(--muted);
+  font-weight:700;
+  font-size:var(--font-lg);
+}
+.nav-tab.active{
+  background:linear-gradient(90deg,rgba(169,112,255,.12),rgba(169,112,255,.06));
+  color:var(--accent);
+  box-shadow:0 8px 24px rgba(169,112,255,.06);
+}
+
+/* ---------- CARD ---------- */
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.01),rgba(255,255,255,.004));
+  border:1px solid var(--card-border);
+  padding:16px;
+  border-radius:var(--radius);
+  box-shadow:0 12px 40px rgba(0,0,0,.6);
+}
+
+/* ---------- GRID ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:12px;
+}
+.col-4{grid-column:span 4}
+.col-6{grid-column:span 6}
+.col-12{grid-column:span 12}
+
+/* ---------- FORM ---------- */
+label{
+  font-size:14px;
+  color:var(--muted);
+  font-weight:700;
+  margin-bottom:8px;
+  display:block;
+}
+input[type=text],
+textarea,
+select{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.03);
+  background:var(--card);
+  color:var(--text);
+  font-size:var(--font-base);
+}
+textarea{min-height:96px;resize:vertical}
+
+/* ---------- BOTOES ---------- */
+button{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.04);
+  padding:10px 14px;
+  border-radius:8px;
+  color:var(--muted);
+  font-weight:800;
+  cursor:pointer;
+  font-size:var(--font-base);
+}
+button.primary{
+  background:linear-gradient(90deg,var(--accent),#8f63ff);
+  color:#fff;
+  border:none;
+  box-shadow:0 8px 30px rgba(169,112,255,.12);
+}
+button.ghost{background:transparent}
+button.secondary{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.02);
+}
+
+/* ---------- INVOLVIDOS ---------- */
+.involved-list{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.inv-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.01),rgba(255,255,255,.004));
+  border:1px solid rgba(255,255,255,.02);
+  padding:12px;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* ---------- DIVIDER ---------- */
+.divider{
+  height:1px;
+  background:rgba(255,255,255,.02);
+  margin:12px 0;
+  border-radius:2px;
+}
+
+/* ---------- OUTPUT ---------- */
+pre.output{
+  background:#0a060b;
+  border-radius:8px;
+  padding:12px;
+  margin-top:14px;
+  white-space:pre-wrap;
+  font-family:monospace;
+  font-size:15px;
+  border:1px solid rgba(255,255,255,.02);
+  color:var(--text);
+}
+
+/* ---------- PREVIEW ---------- */
+.preview-wrap{
+  margin-top:14px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.preview-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.01),rgba(255,255,255,.004));
+  border:1px solid rgba(255,255,255,.02);
+  padding:14px;
+  border-radius:10px;
+  flex:1;
+  min-width:0;               /* evita overflow no mobile */
+}
+.preview-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:8px;
+}
+.preview-header img{
+  width:56px;
+  height:56px;
+  object-fit:contain;
+  border-radius:8px;
+  background:rgba(255,255,255,.02);
+  padding:6px;
+}
+.preview-title{
+  font-weight:800;
+  color:var(--accent);
+  font-size:var(--font-lg);
+}
+.preview-body{
+  background:transparent;
+  padding:6px;
+  border-radius:6px;
+  font-size:var(--font-base);
+  line-height:1.45;
+  color:var(--muted);
+}
+
+/* ---------- MINI LOG ---------- */
+.mini-log{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:360px;
+  max-width:calc(100% - 36px);
+  z-index:9999;
+}
+.mini-log .log-item{
+  background:rgba(255,255,255,.02);
+  border-left:4px solid var(--accent);
+  padding:10px;
+  border-radius:6px;
+  color:var(--muted);
+  margin-top:8px;
+  font-size:13px;
+  box-shadow:0 8px 28px rgba(0,0,0,.6);
+}
+
+/* ---------- MODAL ---------- */
+.modal-back{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;               /* garante que começa oculto */
+  align-items:center;
+  justify-content:center;
+  z-index:10000;
+}
+.modal{
+  background:var(--bg-gradient);   /* fundo escuro igual à página */
+  padding:16px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.02);
+  width:940px;
+  max-width:calc(100% - 40px);
+  max-height:82vh;
+  overflow:auto;
+  outline:none;
+}
+
+/* ---------- HISTÓRICO ---------- */
+.hist-controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin:8px 0;
+}
+.hist-section{margin-top:8px}
+.hist-title{
+  font-weight:800;
+  color:var(--accent);
+  margin-bottom:8px;
+}
+.hist-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.hist-item{
+  background:linear-gradient(90deg,rgba(255,255,255,.005),rgba(255,255,255,.003));
+  padding:12px;
+  border-radius:8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border:1px solid rgba(255,255,255,.02);
+}
+
+/* ---------- NOTIF TOP ---------- */
+.top-notif{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  top:16px;
+  background:linear-gradient(180deg,rgba(12,8,18,.97),rgba(10,7,15,.97));
+  border:1px solid rgba(255,255,255,.03);
+  padding:12px 16px;
+  border-radius:10px;
+  color:var(--text);
+  display:none;
+  z-index:12000;
+  box-shadow:0 14px 40px rgba(58,12,163,.08);
+}
+.top-notif .msg{font-weight:800;color:var(--accent)}
+.top-notif .small{font-size:13px;color:var(--muted);margin-top:6px}
+.top-notif .actions{
+  margin-top:10px;
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+}
+.top-notif button{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.04);
+  padding:8px 10px;
+  border-radius:6px;
+  color:var(--muted);
+  font-weight:800;
+}
+.top-notif button.primary{
+  background:linear-gradient(90deg,var(--accent),#8f63ff);
+  color:#fff;
+  border:none;
+}
+
+/* ---------- COMPACT ---------- */
+.compact .card{padding:10px;border-radius:10px}
+.compact .grid{gap:8px}
+.compact label{font-size:13px}
+.compact input[type=text],
+.compact textarea,
+.compact select{
+  padding:8px;
+  font-size:14px;
+  border-radius:6px;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media(max-width:980px){
+  .grid{grid-template-columns:repeat(6,1fr)}
+  .col-4{grid-column:span 3}
+  .col-6{grid-column:span 6}
+}
+@media(max-width:600px){
+  .preview-card{min-width:0}
+}
+</style>
+</head>
+
+<body>
+<main class="wrap">
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <h1 id="pageTitle">Painel Civil BOPC + PRISÂO</h1>
+
+    <div style="display:flex;gap:10px;align-items:center">
+      <div class="tabs" role="tablist" aria-label="Seções">
+        <button class="nav-tab active" data-target="bopc" role="tab" aria-selected="true">B.O.P.C</button>
+        <button class="nav-tab" data-target="prisao" role="tab">PRISÃO</button>
+      </div>
+
+      <button id="toggleCompact" class="nav-tab" style="margin-left:8px;font-size:14px">Modo Compacto</button>
+    </div>
+  </header>
+
+  <!-- ==================== BOPC ==================== -->
+  <section id="bopcCard" class="card" role="region" aria-labelledby="bopcTitle">
+    <h2 id="bopcTitle" class="small" style="display:none">B.O.P.C</h2>
+
+    <div class="grid">
+      <!-- Dados básicos -->
+      <div class="col-4"><label>Data</label><input id="b_data" type="text" placeholder="DD/MM/AAAA"></div>
+      <div class="col-4"><label>Hora</label><input id="b_hora" type="text" placeholder="HH:MM"></div>
+      <div class="col-4"><label>Unidade</label><input id="b_unidade" type="text" placeholder="Ex: DENARC"></div>
+
+      <!-- Nº Ocorrência -->
+      <div class="col-12"><label>Nº Ocorrência</label><input id="b_numero" type="text" value="BOPC "></div>
+
+      <!-- Incluir envolvido -->
+      <div class="col-12" style="margin-top:6px">
+        <label>Adicionar Envolvido</label>
+        <div style="display:flex;gap:10px;">
+          <input id="inv_nome" type="text" placeholder="Nome | RG (Ex: Pedro Silva | 1830)">
+          <select id="inv_situ">
+            <option>Autor</option>
+            <option>Vítima</option>
+            <option>Testemunha</option>
+          </select>
+          <button id="btnAddInv" class="ghost">Adicionar</button>
+        </div>
+        <div class="small">Adicione todos os envolvidos antes de gerar.</div>
+      </div>
+
+      <!-- Lista de envolvidos -->
+      <div class="col-12"><div class="divider"></div><label>Lista de Envolvidos</label><div id="involvedList" class="involved-list" aria-live="polite"></div></div>
+
+      <!-- Dados complementares -->
+      <div class="col-12"><label>Local do Fato</label><input id="b_local" type="text" placeholder="Ex: Centro de SP"></div>
+      <div class="col-12"><label>Natureza da Ocorrência</label><textarea id="b_natureza"  name="b_natureza" rows="3" placeholder="Ex: Art. 330, Art. 289"class="multi-line"></textarea></div>
+      <div class="col-12"><label>Objetos Apreendidos</label><textarea id="b_objetos"  name="b_objetos" rows="4" placeholder="Itens ilícitos"class="multi-line"></textarea></div>
+           
+      <div class="col-12">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <label style="margin:0">Descrição dos Fatos</label>
+          <button id="btnGPT" class="ghost" style="padding:6px 12px;font-size:13px" title="Abrir ChatGPT com prompt para melhorar o relato">
+            🤖 GPT
+          </button>
+        </div>
+        <textarea id="b_relato" rows="5"></textarea>
+      </div>
+      <!-- Responsável + Função -->
+      <div class="col-6"><label>Responsável</label><input id="b_resp" type="text" placeholder="Nome do responsável"></div>
+      <div class="col-6">
+        <label>Função Pública</label>
+        <select id="b_funcao">
+          <option>Delegado de Divisão</option>
+          <option>Delegado Adjunto</option>
+          <option>Investigador Chefe</option>
+          <option>Investigador 1° Classe</option>
+          <option>Investigador</option>
+          <option>Escrivão Chefe</option>
+          <option>Escrivão</option>
+          <option>Agente Classe Especial</option>
+          <option>Agente 1° Classe</option>
+          <option>Agente 2° Classe</option>
+          <option>Agente 3° Classe</option>
+          <option value="__outro__">Outro (digitar)</option>
+        </select>
+        <input id="b_funcao_outro" type="text" placeholder="Digite função" style="margin-top:8px;display:none">
+      </div>
+
+      <!-- Salvar no histórico -->
+      <div class="col-12" style="display:flex;gap:12px;align-items:center;margin-top:8px">
+        <label style="margin:0;font-weight:800">Registrar no histórico</label>
+        <input id="chkSalvarHist" type="checkbox" aria-label="Salvar no histórico" title="Marque para registrar esta ocorrência no histórico" style="transform:scale(1.15)">
+        <div class="small" style="margin-left:8px;color:var(--muted)">Desmarque para rascunho/uso temporário</div>
+      </div>
+
+      <!-- Botões de ação -->
+      <div class="col-12 btns">
+        <button id="btnNowB" class="ghost">⏱ Atualizar Data/Hora</button>
+        <button id="btnGerarB" class="primary">📝 Gerar BOPC</button>
+        <button class="secondary" id="btnLimparB">♻ Limpar</button>
+        <button id="btnCopiarB" class="ghost">📋 Copiar</button>
+        <button class="ghost" id="btnHistOpen">📚 Histórico</button>
+        <button class="ghost" id="btnClearDraft">🧾 Limpar Rascunho</button>
+      </div>
+
+      <!-- Saída (texto gerado) -->
+      <div class="col-12"><pre id="saidaB" class="output" aria-live="polite"></pre></div>
+
+      <!-- Preview -->
+      <div class="col-12 preview-wrap">
+        <div class="preview-card" id="previewCard">
+          <div class="preview-header">
+            <img id="previewBadge" src="https://cdn.discordapp.com/attachments/1366278927902965840/1448213373903962132/OIP.png?ex=693a714e&is=69391fce&hm=529ff773e3687d8ef1dc3809698284f216a43690c84ae446775c6d58b2e0a18d&" alt="Brasão">
+            <div>
+              <div class="preview-title">BOLETIM DE OCORRÊNCIA POLICIAL CIVIL — B.O.P.C</div>
+              <div class="small"> </div>
+            </div>
+          </div>
+          <div class="preview-body" id="previewBody"><div class="small" style="opacity:0.75">Preview vazio — gere o BOPC para visualizar.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRISÃO ==================== -->
+  <section id="prisaoCard" class="card" style="display:none;margin-top:14px;" role="region" aria-labelledby="prisaoTitle">
+    <h2 id="prisaoTitle" class="small" style="display:none">PRISÃO</h2>
+
+    <div class="grid">
+      <div class="col-6"><label>Selecionar Envolvido</label><select id="selEnvolvido"></select></div>
+      <div class="col-6"><label>RG Suspeito</label><input id="p_rg" type="text"></div>
+      <div class="col-6"><label>BOPM (vinculado ao Nº BOPC)</label><input id="p_bopm" type="text" value="BOPM " class="single-line"></div>
+      <div class="col-6"><label>Requerente</label><input id="p_req" type="text" placeholder="Nome do Responsavel"></div>
+      <div class="col-12"><label>Itens Ilícitos</label><textarea id="p_itens"  name="p_itens" rows="4" placeholder="Adicione os Flagrantes"class="multi-line"></textarea></div>
+      <div class="col-12"><label>Artigos</label><textarea id="p_artigos"  name="p_artigos" rows="3" placeholder="Ex: Art. 330, Art. 289"class="multi-line"></textarea></div>
+      <div class="col-12"><label>Policiais envolvidos</label><textarea id="p_policiais"  name="p_policiais" rows="4" placeholder="Ex: 1° Sgt Felipe Silva"class="multi-line"></textarea></div>
+      <div class="col-12"><label>Observações</label><textarea id="p_obs">N/A</textarea></div>
+
+      <div class="col-12 btns">
+        <button id="btnGerarP" class="primary">📝 Gerar PRISÃO</button>
+        <button class="secondary" id="btnLimparP">♻ Limpar</button>
+        <button id="btnCopiarP" class="ghost">📋 Copiar</button>
+      </div>
+
+      <div class="col-12"><pre id="saidaP" class="output" aria-live="polite"></pre></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================== TOP NOTIF ==================== -->
+<div class="top-notif" id="topNotif" role="status" aria-live="polite">
+  <div class="msg" id="topNotifMsg">⚠ Registro idêntico encontrado</div>
+  <div class="small" id="topNotifSub">Deseja salvar mesmo assim?</div>
+  <div class="actions">
+    <button id="topNotifNo">✖ Não</button>
+    <button id="topNotifYes" class="primary">✔ Sim</button>
+  </div>
+</div>
+
+<!-- ==================== MINI LOG ==================== -->
+<div class="mini-log" id="miniLog" aria-live="polite"></div>
+
+<!-- ==================== HISTÓRICO MODAL ==================== -->
+<div class="modal-back" id="modalBack" aria-hidden="true" style="display:none;">
+  <div class="modal" role="dialog" aria-modal="true" id="modal" tabindex="-1">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-weight:800;color:var(--accent)">Histórico</div>
+      <div class="controls-row">
+        <div class="hist-controls">
+          <button id="tabHistBopc" class="ghost">BOPC</button>
+          <button id="tabHistPrisao" class="ghost">PRISÃO</button>
+        </div>
+        <button id="btnClearHistory" class="ghost">Limpar Tudo</button>
+        <button id="btnCloseModal" class="secondary">Fechar</button>
+      </div>
+    </div>
+
+    <div class="hist-section" id="sectionBopc">
+      <div class="hist-title">BOPC Registrados</div>
+      <div id="histBopc" class="hist-list"></div>
+    </div>
+
+    <div class="hist-section" id="sectionPrisao" style="display:none">
+      <div class="hist-title">PRISÕES Registradas</div>
+      <div id="histPrisao" class="hist-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== VISUALIZAR MODAL ==================== -->
+<div class="modal-back" id="modalViewBack" style="display:none;">
+  <div class="modal" id="modalView" tabindex="-1">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-weight:800;color:var(--accent)">Visualizar Registro</div>
+      <div><button id="closeView" class="secondary">Fechar</button></div>
+    </div>
+    <div style="margin-top:10px"><pre id="viewBopc" style="white-space:pre-wrap;background:transparent;border:none;color:var(--text)"></pre></div>
+  </div>
+</div>
+
+<script>
+/*=====================================================================
+  UTILIDADES & HELPERS
+=====================================================================*/
+const $ = id => document.getElementById(id);
+const uid = () => 'id' + Math.random().toString(36).slice(2,9);
+const KEY_HISTORY = 'bopc_hist_roxo_fixed_v1';
+const KEY_DRAFT   = 'bopc_draft_roxo_fixed_v1';
+const DEFAULT_PREFIX = 'BOPC ';
+
+/*---------------------------------------------------*/
+/*  Estado */
+let involved = [];               // [{id, nome, situ}]
+let draftTimer = null;
+let lastDraftNotify = 0;
+let pendingToSave = null;
+
+/*---------------------------------------------------*/
+/*  Helpers */
+function safe(v){ return (v===undefined||v===null) ? '' : String(v).replace(/[<>]/g,'').trim(); }
+function escapeHtml(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function log(msg){
+  const c = $('miniLog');
+  const e = document.createElement('div');
+  e.className='log-item';
+  e.textContent=msg;
+  c.appendChild(e);
+  setTimeout(()=>{ e.style.transition='opacity 300ms'; e.style.opacity='0'; setTimeout(()=>e.remove(),350); },4200);
+}
+
+/*---------------------------------------------------*/
+/*  STORAGE */
+function loadHistory(){ try{ return JSON.parse(localStorage.getItem(KEY_HISTORY)||'[]'); }catch(e){ return []; } }
+function saveHistory(a){ localStorage.setItem(KEY_HISTORY, JSON.stringify(a||[])); }
+function loadDraft(){ try{ return JSON.parse(localStorage.getItem(KEY_DRAFT)||'{}'); }catch(e){ return {}; } }
+function saveDraft(o){ localStorage.setItem(KEY_DRAFT, JSON.stringify(o||{})); }
+
+/*---------------------------------------------------*/
+/*  PARSER */
+function parseNR(v){
+  if(!v) return {nome:'', rg:''};
+  const p = v.split('|');
+  return {nome:(p[0]||'').trim(), rg:(p[1]||'').trim()};
+}
+
+/*---------------------------------------------------*/
+/*  MINI‑MARKDOWN → HTML (preview) */
+function mdToHtml(str){
+  if(!str) return '';
+  return escapeHtml(str)
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/\n/g,'<br>');
+}
+function renderPreview(text){
+  const pb = $('previewBody');
+  if(!text){
+    pb.innerHTML='<div class="small" style="opacity:0.75">Preview vazio — gere o BOPC para visualizar.</div>';
+    return;
+  }
+  let html = mdToHtml(text);
+  html = html.replace(/Função Pública:/g,'<strong>Função Pública:</strong>');
+  pb.innerHTML = html;
+}
+
+/*---------------------------------------------------*/
+/*  RASCUNHO (debounce) */
+function gatherDraft(){
+  return {
+    b_data: $('b_data').value,
+    b_hora: $('b_hora').value,
+    b_unidade: $('b_unidade').value,
+    b_numero: $('b_numero').value,
+    involved: involved,
+    b_local: $('b_local').value,
+    b_natureza: $('b_natureza').value,
+    b_objetos: $('b_objetos').value,
+    b_relato: $('b_relato').value,
+    b_resp: $('b_resp').value,
+    b_funcao: $('b_funcao').value,
+    b_funcao_outro: $('b_funcao_outro').value,
+    p_rg: $('p_rg').value,
+    p_bopm: $('p_bopm').value,
+    p_req: $('p_req').value,
+    p_itens: $('p_itens').value,
+    p_artigos: $('p_artigos').value,
+    p_policiais: $('p_policiais').value,
+    p_obs: $('p_obs').value
+  };
+}
+function debounceSaveDraft(){ if(draftTimer) clearTimeout(draftTimer); draftTimer=setTimeout(()=>saveDraftAuto(),900); }
+function saveDraftAuto(clear=false){
+  if(clear){ localStorage.removeItem(KEY_DRAFT); log('Rascunho limpo.'); return; }
+  saveDraft(gatherDraft());
+  const now = Date.now();
+  if(now-lastDraftNotify>10000){ log('Rascunho salvo.'); lastDraftNotify=now; }
+}
+function restoreDraft(){
+  const d = loadDraft();
+  if(!d || Object.keys(d).length===0) return;
+  $('b_data').value = d.b_data||'';
+  $('b_hora').value = d.b_hora||'';
+  $('b_unidade').value = d.b_unidade||'';
+  $('b_numero').value = d.b_numero||DEFAULT_PREFIX;
+  involved = d.involved||[];
+  renderInv();
+  loadInvSel();
+  $('b_local').value = d.b_local||'';
+  $('b_natureza').value = d.b_natureza||'';
+  $('b_objetos').value = d.b_objetos||'';
+  $('b_relato').value = d.b_relato||'';
+  $('b_resp').value = d.b_resp||'';
+  $('b_funcao').value = d.b_funcao||'';
+  $('b_funcao_outro').value = d.b_funcao_outro||'';
+  $('p_rg').value = d.p_rg||'';
+  $('p_bopm').value = d.p_bopm||'';
+  $('p_req').value = d.p_req||'';
+  $('p_itens').value = d.p_itens||'';
+  $('p_artigos').value = d.p_artigos||'';
+  $('p_policiais').value = d.p_policiais||'';
+  $('p_obs').value = d.p_obs||'';
+  log('Rascunho restaurado.');
+}
+
+/*---------------------------------------------------*/
+/*  ENVOLVIDOS (render + select) */
+function renderInv(){
+  const box = $('involvedList');
+  box.innerHTML='';
+  involved.forEach(inv=>{
+    const p = parseNR(inv.nome);
+    const node = document.createElement('div');
+    node.className='inv-card';
+    node.innerHTML = `
+      <div>
+        <strong style="color:var(--accent)">${escapeHtml(p.nome)}</strong>
+        <span class="small"> | ${escapeHtml(p.rg||'---')}</span><br>
+        <span class="small">Situação: ${escapeHtml(inv.situ)}</span>
+      </div>`;
+    const actions = document.createElement('div');
+    actions.style.display='flex';
+    actions.style.gap='10px';
+
+    const selBtn = document.createElement('button');
+    selBtn.className='ghost';
+    selBtn.textContent='Selecionar';
+    selBtn.onclick=()=>{ $('selEnvolvido').value=inv.id; fillPrisao(inv.id); switchTab('prisao'); log('Envolvido selecionado.'); };
+
+    const editBtn = document.createElement('button');
+    editBtn.className='secondary';
+    editBtn.textContent='Editar';
+    editBtn.onclick=()=>{ const nv=prompt('Editar Nome | RG',inv.nome); if(nv){ inv.nome=nv; renderInv(); loadInvSel(); debounceSaveDraft(); } };
+
+    const delBtn = document.createElement('button');
+    delBtn.className='ghost';
+    delBtn.textContent='Remover';
+    delBtn.onclick=()=>{ if(confirm('Remover envolvido?')){ involved = involved.filter(i=>i.id!==inv.id); renderInv(); loadInvSel(); debounceSaveDraft(); log('Envolvido removido.'); } };
+
+    actions.append(selBtn,editBtn,delBtn);
+    node.appendChild(actions);
+    box.appendChild(node);
+  });
+}
+function loadInvSel(){
+  const sel = $('selEnvolvido');
+  if(!sel) return;
+  sel.innerHTML='<option value="">-- Nenhum --</option>';
+  involved.forEach(i=>{
+    const p = parseNR(i.nome);
+    const opt = document.createElement('option');
+    opt.value=i.id;
+    opt.textContent=`${p.nome} | ${p.rg}`;
+    sel.appendChild(opt);
+  });
+}
+
+/*---------------------------------------------------*/
+/*  HISTÓRICO – utilitários */
+function hashStr(s){
+  let h=2166136261;
+  for(let i=0;i<s.length;i++){
+    h ^= s.charCodeAt(i);
+    h += (h<<1)+(h<<4)+(h<<7)+(h<<8)+(h<<24);
+  }
+  return (h>>>0).toString(36);
+}
+function makeRecordKey(obj){
+  return `${(obj.tipo||'').toLowerCase()}|${(obj.data||'').trim()}|${(obj.hora||'').trim()}|${hashStr(obj.text||obj.bopcText||'')}`;
+}
+function isDuplicateRecord(rec){
+  const hist = loadHistory();
+  const k = makeRecordKey(rec);
+  return hist.some(it=>makeRecordKey(it)===k);
+}
+function saveOccurrence(rec){
+  const h = loadHistory();
+  h.unshift(rec);
+  if(h.length>2000) h.length=2000;
+  saveHistory(h);
+}
+function deleteOccurrenceById(id){
+  const h = loadHistory();
+  const idx = h.findIndex(x=>x._id===id);
+  if(idx===-1) return false;
+  h.splice(idx,1);
+  saveHistory(h);
+  return true;
+}
+
+/*---------------------------------------------------*/
+/*  NOTIF TOP */
+function showTopNotif(msg, sub, onYes, onNo){
+  $('topNotifMsg').textContent = msg;
+  $('topNotifSub').textContent = sub||'';
+  const box = $('topNotif');
+  box.style.display='block';
+  const yes = $('topNotifYes'), no = $('topNotifNo');
+  const clean = ()=>{ box.style.display='none'; yes.onclick=null; no.onclick=null; };
+  yes.onclick = ()=>{ clean(); if(typeof onYes==='function') onYes(); };
+  no.onclick  = ()=>{ clean(); if(typeof onNo ==='function') onNo(); };
+}
+
+/*---------------------------------------------------*/
+/*  CONSTRUIR TEXTO BOPC */
+function buildBopcText(){
+  let out = "**BOLETIM DE OCORRÊNCIA POLICIAL CIVIL (B.O.P.C)**\n\n";
+  out += `**Data:** ${safe($('b_data').value)}   **Hora:** ${safe($('b_hora').value)}\n`;
+  out += `**Unidade:** ${safe($('b_unidade').value)}\n`;
+  let num = $('b_numero').value.trim();
+  if(!num){ num = DEFAULT_PREFIX; $('b_numero').value = DEFAULT_PREFIX; }
+  out += `**Número da Ocorrência:** ${safe(num)}\n\n`;
+
+  out += `**1. ENVOLVIDOS**\n`;
+  if(!involved.length){
+    out += `Nenhum envolvido informado.\n\n`;
+  }else{
+    involved.forEach(i=>{
+      const p = parseNR(i.nome);
+      out += `Nome: ${safe(p.nome)} | ${safe(p.rg)}\n`;
+      out += `Situação: (${i.situ==='Autor'?'X':' '}) Autor   (${i.situ==='Vítima'?'X':' '}) Vítima   (${i.situ==='Testemunha'?'X':' '}) Testemunha\n\n`;
+    });
+  }
+
+  out += `**2. LOCAL DO FATO**\n${safe($('b_local').value)}\n\n`;
+  out += `**3. NATUREZA DA OCORRÊNCIA**\n${safe($('b_natureza').value)}\n\n`;
+  out += `**4. OBJETOS APREENDIDOS**\n${safe($('b_objetos').value)}\n\n`;
+  out += `**5. DESCRIÇÃO DOS FATOS**\n${safe($('b_relato').value)}\n\n`;
+
+  out += `**Responsável:** ${safe($('b_resp').value)}\n`;
+  const func = ($('b_funcao').value==='__outro__') ? safe($('b_funcao_outro').value) : safe($('b_funcao').value);
+  out += `**Função Pública:** ${func}\n`;
+
+  return out;
+}
+
+  // ---- GPT button ----
+  $('btnGPT').onclick = async ()=>{
+    const relato = $('b_relato').value.trim();
+    
+    if(!relato){
+      alert('❌ Preencha a Descrição dos Fatos antes de usar o GPT.');
+      return;
+    }
+
+    const prompt = `Atue como um delegado de polícia experiente e reescreva o seguinte relato de ocorrência policial de forma mais profissional, clara e técnica, mantendo todos os fatos descritos. Use linguagem formal e adequada para um Boletim de Ocorrência Policial Civil (B.O.P.C):
+
+${relato}
+
+Por favor, melhore a redação mantendo a precisão dos fatos e seguindo o padrão técnico policial.`;
+
+    try{
+      await navigator.clipboard.writeText(prompt);
+      log('✅ Prompt copiado! Cole no ChatGPT.');
+      
+      // Mostra notificação especial
+      const notif = document.createElement('div');
+      notif.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(135deg,#667eea,#764ba2);padding:24px 32px;border-radius:16px;color:#fff;font-weight:800;font-size:16px;z-index:15000;box-shadow:0 20px 60px rgba(0,0,0,0.6);text-align:center;max-width:440px';
+      notif.innerHTML = `
+        <div style="font-size:48px;margin-bottom:12px">🤖</div>
+        <div style="margin-bottom:8px">Prompt copiado com sucesso!</div>
+        <div style="font-size:14px;font-weight:400;opacity:0.9;margin-bottom:16px">Abrindo ChatGPT... Cole o conteúdo com Ctrl+V</div>
+        <div style="font-size:13px;opacity:0.75">Esta janela fechará automaticamente</div>
+      `;
+      document.body.appendChild(notif);
+      
+      setTimeout(()=>{
+        window.open('https://chat.openai.com/', '_blank');
+        setTimeout(()=> notif.remove(), 1500);
+      }, 800);
+      
+    }catch(err){
+      alert('❌ Erro ao copiar. Verifique as permissões do navegador.');
+      console.error(err);
+    }
+  };
+
+/*---------------------------------------------------*/
+/*  SWITCH DE ABAS – agora com listeners explícitos */
+function switchTab(target){
+  // limpa a classe active de TODOS os botões (inclui o de compact)
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+
+  // adiciona a classe ao botão correto
+  const btn = document.querySelector(`.nav-tab[data-target="${target}"]`);
+  if(btn) btn.classList.add('active');
+
+  // mostra/oculta as cards
+  if(target==='bopc'){
+    $('bopcCard').style.display='';
+    $('prisaoCard').style.display='none';
+  }else{
+    $('bopcCard').style.display='none';
+    $('prisaoCard').style.display='';
+  }
+}
+
+/* listeners explícitos (não dependem de .tabs) */
+document.querySelector('.nav-tab[data-target="bopc"]').addEventListener('click',()=>switchTab('bopc'));
+document.querySelector('.nav-tab[data-target="prisao"]').addEventListener('click',()=>switchTab('prisao'));
+
+/*---------------------------------------------------*/
+/*  MODO COMPACTO – já tem listener, só garante atualização visual */
+$('toggleCompact').onclick = ()=>{
+  document.body.classList.toggle('compact');
+  if(document.body.classList.contains('compact')){
+    sessionStorage.setItem('bopc_compact','1');
+  }else{
+    sessionStorage.removeItem('bopc_compact');
+  }
+  updateCompactBtn();
+};
+function updateCompactBtn(){
+  const on = document.body.classList.contains('compact');
+  $('toggleCompact').textContent = on ? 'Modo Compacto (ON)' : 'Modo Compacto';
+}
+
+/* restaurar estado compacto ao recarregar */
+if(sessionStorage.getItem('bopc_compact')) document.body.classList.add('compact');
+updateCompactBtn();
+
+/*---------------------------------------------------*/
+/*  FUNÇÃO PÚBLICA – mostrar campo "outro" */
+$('b_funcao').addEventListener('change', e=>{
+  $('b_funcao_outro').style.display = e.target.value==='__outro__' ? 'block' : 'none';
+});
+
+/*---------------------------------------------------*/
+/*  BOTÕES DE AÇÃO BOPC */
+$('btnNowB').onclick = ()=>{
+  const d = new Date();
+  $('b_data').value = d.toLocaleDateString('pt-BR');
+  $('b_hora').value = d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+  debounceSaveDraft();
+  log('Data/Hora atualizada.');
+};
+
+$('btnGerarB').onclick = ()=>{
+  if(!$('b_data').value.trim() || !$('b_hora').value.trim()){
+    alert('Preencha Data e Hora antes de gerar o BOPC.');
+    return;
+  }
+  const text = buildBopcText();
+  $('saidaB').innerText = text;
+  renderPreview(text);
+
+  const record = {
+    _id: uid(),
+    tipo: 'B.O.P.C',
+    data: $('b_data').value,
+    hora: $('b_hora').value,
+    unidade: $('b_unidade').value,
+    numero: $('b_numero').value,
+    involved: involved.map(i=>parseNR(i.nome)),
+    natureza: $('b_natureza').value,
+    artigos: $('b_natureza').value,
+    bopcText: text,
+    text,
+    createdAt: Date.now()
+  };
+
+  const save = !!$('chkSalvarHist').checked;
+  if(!save){ log('BOPC gerado em rascunho (não salvo).'); return; }
+
+  if(isDuplicateRecord(record)){
+    pendingToSave = record;
+    showTopNotif('⚠ Registro idêntico encontrado',
+      'Já existe ocorrência idêntica. Deseja salvar mesmo assim?',
+      ()=>{ saveOccurrence(pendingToSave); pendingToSave=null; renderHistoryModal(); log('BOPC salvo (duplicado confirmado).'); },
+      ()=>{ pendingToSave=null; log('Salvar cancelado (duplicado detectado).'); });
+    return;
+  }
+
+  saveOccurrence(record);
+  renderHistoryModal();
+  log('BOPC salvo no histórico.');
+};
+
+$('btnCopiarB').onclick = ()=>{ try{ navigator.clipboard.writeText($('saidaB').innerText); log('BOPC copiado.'); }catch(e){ alert('Erro ao copiar.'); } };
+$('btnLimparB').onclick = ()=>{
+  if(!confirm('Limpar todos os campos?')) return;
+  ['b_data','b_hora','b_unidade','b_numero','b_local','b_natureza','b_objetos','b_relato','b_resp'].forEach(id=>{ const el=$(id); if(el) el.value=''; });
+  $('b_numero').value = DEFAULT_PREFIX;
+  involved = [];
+  renderInv(); loadInvSel();
+  $('saidaB').innerText=''; renderPreview('');
+  saveDraftAuto(true);
+  log('Campos BOPC limpos.');
+};
+
+/*---------------------------------------------------*/
+/*  ADICIONAR ENVOLVIDO */
+$('btnAddInv').onclick = ()=>{
+  const v = $('inv_nome').value.trim();
+  const s = $('inv_situ').value||'Autor';
+  if(!v){ alert('Informe Nome | RG'); return; }
+
+  // verifica histórico antes de inserir
+  checkInvolvedHistory(v);
+
+  involved.push({ id:uid(), nome:v, situ:s });
+  $('inv_nome').value='';
+  renderInv(); loadInvSel(); debounceSaveDraft(); log('Envolvido adicionado.');
+};
+
+/*---------------------------------------------------*/
+/*  LIMPAR RASCUNHO COMPLETO */
+$('btnClearDraft').onclick = ()=>{
+  if(!confirm('Limpar rascunho e todos os campos?')) return;
+  localStorage.removeItem(KEY_DRAFT);
+  involved=[];
+  renderInv(); loadInvSel();
+  ['b_data','b_hora','b_unidade','b_numero','b_local','b_natureza','b_objetos','b_relato','b_resp',
+   'p_rg','p_bopm','p_req','p_itens','p_artigos','p_policiais','p_obs'].forEach(id=>{ const el=$(id); if(el) el.value=''; });
+  $('b_numero').value = DEFAULT_PREFIX;
+  renderPreview('');
+  $('saidaB').innerText=''; $('saidaP').innerText='';
+  log('Rascunho limpo.');
+};
+
+/*---------------------------------------------------*/
+/*  PRISÃO – preenchimento automático ao selecionar envolvido */
+function fillPrisao(id){
+  const inv = involved.find(i=>i.id===id);
+  if(!inv) return;
+  const p = parseNR(inv.nome);
+
+  // RG – sempre sobrescreve
+  $('p_rg').value = p.rg || '';
+
+  // Artigos (puxa da natureza do BOPC se ainda vazio)
+  if(!$('p_artigos').value.trim()){
+    $('p_artigos').value = $('b_natureza').value || '';
+  }
+
+  // Requerente (responsável do BOPC)
+  if(!$('p_req').value.trim()){
+    $('p_req').value = $('b_resp').value || '';
+  }
+
+  // Itens ilícitos (objetos apreendidos)
+  if(!$('p_itens').value.trim()){
+    $('p_itens').value = $('b_objetos').value || '';
+  }
+
+  // BOPM (número da ocorrência)
+  if(!$('p_bopm').value.trim()){
+    const num = $('b_numero').value || '';
+    $('p_bopm').value = num.replace(/BOPC/gi,'BOPC');
+  }
+
+  debounceSaveDraft();
+}
+$('selEnvolvido').addEventListener('change',()=>{
+  const id = $('selEnvolvido').value;
+  if(id) fillPrisao(id);
+});
+
+/*---------------------------------------------------*/
+/*  GERAR PRISÃO */
+$('btnGerarP').onclick = ()=>{
+  const sid = $('selEnvolvido').value;
+  const inv = involved.find(i=>i.id===sid);
+  if(sid && !inv){ alert('Envolvido selecionado não encontrado.'); return; }
+
+  const artigos = $('p_artigos').value.trim() || $('b_natureza').value || '';
+
+  let out = '';
+  out += `**RG Suspeito:** ${safe($('p_rg').value)}\n`;
+  out += `**BOPM:** ${safe($('p_bopm').value)}\n`;
+  out += `**Requerente:** ${safe($('p_req').value)}\n`;
+
+  /* 1️⃣ Itens ilícitos */
+  out += `**Itens ilícitos:**\n${safe($('p_itens').value)}\n`;
+
+  /* 2️⃣ Artigos */
+  out += `**Artigos:**\n${safe(artigos)}\n`;
+
+  /* 3️⃣ Policiais envolvidos */
+  out += `**Policiais envolvidos:**\n${safe($('p_policiais').value)}\n`;
+
+  out += `**Observações:** ${safe($('p_obs').value)}\n`;
+
+  $('saidaP').innerText = out;
+  log('Prisão gerada.');
+
+  /* ---------- registro no histórico ---------- */
+  const record = {
+    _id: uid(),
+    tipo: 'PRISÃO',
+    data: $('b_data').value || '',
+    hora: $('b_hora').value || '',
+    nomePrincipal: inv ? parseNR(inv.nome).nome : '',
+    rgPrincipal: inv ? parseNR(inv.nome).rg : $('p_rg').value || '',
+    natureza: artigos,
+    artigos,
+    bopcText: out,
+    text: out,
+    createdAt: Date.now()
+  };
+
+  if(!$('chkSalvarHist').checked){
+    log('Prisão gerada em rascunho (não salva).');
+    return;
+  }
+
+  if(isDuplicateRecord(record)){
+    pendingToSave = record;
+    showTopNotif('⚠ Registro idêntico encontrado',
+      `Já existe PRISÃO idêntica para ${record.nomePrincipal}. Deseja salvar mesmo assim?`,
+      ()=>{ saveOccurrence(pendingToSave); pendingToSave=null; renderHistoryModal(); log('PRISÃO salva (confirmada).'); },
+      ()=>{ pendingToSave=null; log('Salvar cancelado (duplicado detectado).'); });
+    return;
+  }
+
+  saveOccurrence(record);
+  renderHistoryModal();
+  log('Prisão salva no histórico.');
+};
+
+$('btnCopiarP').onclick = ()=>{ try{ navigator.clipboard.writeText($('saidaP').innerText); log('Prisão copiada.'); }catch(e){ alert('Erro ao copiar.'); } };
+$('btnLimparP').onclick = ()=>{
+  if(!confirm('Limpar campos da prisão?')) return;
+  ['p_rg','p_bopm','p_req','p_itens','p_artigos','p_policiais','p_obs'].forEach(id=>{ const el=$(id); if(el) el.value=''; });
+  $('saidaP').innerText='';
+  debounceSaveDraft();
+  log('Campos da prisão limpos.');
+};
+
+/*---------------------------------------------------*/
+/*  HISTÓRICO – MODAL */
+function renderHistoryModal(){
+  const all = loadHistory();
+  const bopc = all.filter(i=>i.tipo==='B.O.P.C');
+  const pris = all.filter(i=>i.tipo==='PRISÃO');
+
+  // BOPC
+  const hb = $('histBopc');
+  hb.innerHTML='';
+  if(!bopc.length) hb.innerHTML='<div class="small">Nenhum BOPC registrado.</div>';
+  else bopc.forEach(it=>{
+    const el=document.createElement('div');
+    el.className='hist-item';
+    const left=document.createElement('div');
+    left.innerHTML = `<div style="font-weight:800">${escapeHtml(it.tipo)} — ${escapeHtml(it.data||'—')}</div>
+                     <div class="small">${escapeHtml(it.natureza||'')} • ${escapeHtml((it.involved||[]).map(p=>p.nome).join(', ')||'—')}</div>`;
+    const right=document.createElement('div');
+    right.style.display='flex';
+    right.style.gap='8px';
+
+    const view=document.createElement('button');
+    view.className='ghost';
+    view.textContent='Ver';
+    view.onclick=()=>{ $('viewBopc').innerText = it.bopcText||it.text||'(sem texto)'; openViewModal(); };
+
+    const del=document.createElement('button');
+    del.className='ghost';
+    del.textContent='Apagar';
+    del.onclick=()=>{ if(confirm('Apagar esta ocorrência?')){ deleteOccurrenceById(it._id); renderHistoryModal(); log('Ocorrência apagada.'); } };
+
+    right.append(view,del);
+    el.append(left,right);
+    hb.appendChild(el);
+  });
+
+  // PRISÃO
+  const hp = $('histPrisao');
+  hp.innerHTML='';
+  if(!pris.length) hp.innerHTML='<div class="small">Nenhuma PRISÃO registrada.</div>';
+  else pris.forEach(it=>{
+    const el=document.createElement('div');
+    el.className='hist-item';
+    const left=document.createElement('div');
+    left.innerHTML = `<div style="font-weight:800">${escapeHtml(it.tipo)} — ${escapeHtml(it.data||'—')}</div>
+                     <div class="small">${escapeHtml(it.natureza||'')} • ${escapeHtml(it.nomePrincipal||'—')}</div>`;
+    const right=document.createElement('div');
+    right.style.display='flex';
+    right.style.gap='8px';
+
+    const view=document.createElement('button');
+    view.className='ghost';
+    view.textContent='Ver';
+    view.onclick=()=>{ $('viewBopc').innerText = it.bopcText||it.text||'(sem texto)'; openViewModal(); };
+
+    const del=document.createElement('button');
+    del.className='ghost';
+    del.textContent='Apagar';
+    del.onclick=()=>{ if(confirm('Apagar esta ocorrência?')){ deleteOccurrenceById(it._id); renderHistoryModal(); log('Ocorrência apagada.'); } };
+
+    right.append(view,del);
+    el.append(left,right);
+    hp.appendChild(el);
+  });
+}
+
+/*---------------------------------------------------*/
+/*  MODAL – abrir/fechar */
+function openModal(){
+  $('modalBack').style.display='flex';
+  $('modalBack').setAttribute('aria-hidden','false');
+  $('modal').focus();
+}
+function closeModal(){
+  $('modalBack').style.display='none';
+  $('modalBack').setAttribute('aria-hidden','true');
+}
+function openViewModal(){
+  $('modalViewBack').style.display='flex';
+  $('modalView').focus();
+}
+function closeViewModal(){
+  $('modalViewBack').style.display='none';
+}
+$('btnHistOpen').onclick = ()=>{ renderHistoryModal(); openModal(); showHistTab('bopc'); };
+$('btnCloseModal').onclick = closeModal;
+$('btnClearHistory').onclick = ()=>{
+  if(confirm('Apagar todo o histórico?')){
+    saveHistory([]);
+    renderHistoryModal();
+    log('Histórico apagado.');
+  }
+};
+$('tabHistBopc').onclick = ()=>showHistTab('bopc');
+$('tabHistPrisao').onclick = ()=>showHistTab('prisao');
+function showHistTab(t){
+  $('sectionBopc').style.display = t==='bopc' ? '' : 'none';
+  $('sectionPrisao').style.display = t==='prisao' ? '' : 'none';
+  document.querySelectorAll('#modal .hist-controls button').forEach(b=>b.classList.remove('active'));
+  (t==='bopc' ? $('tabHistBopc') : $('tabHistPrisao')).classList.add('active');
+}
+
+/* fechar modal ao clicar fora */
+document.getElementById('modalBack').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeModal(); });
+document.getElementById('modalViewBack').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeViewModal(); });
+$('#closeView').onclick = closeViewModal;
+
+/*---------------------------------------------------*/
+/*  VERIFICA HISTÓRICO AO ADICIONAR ENVOLVIDO */
+function checkInvolvedHistory(nomeRG){
+  const p = parseNR(nomeRG);
+  if(!p.nome||!p.rg) return;
+  const all = loadHistory();
+  const matches = all.filter(it=>{
+    if(it.tipo==='B.O.P.C' && Array.isArray(it.involved)){
+      return it.involved.some(iv=> (iv.nome||'').trim()===p.nome && (iv.rg||'').trim()===p.rg );
+    }
+    return (it.nomePrincipal||'').trim()===p.nome && (it.rgPrincipal||'').trim()===p.rg;
+  });
+  if(!matches.length) return;
+
+  // abre modal já filtrado
+  openModal();
+  $('histBopc').innerHTML=''; $('histPrisao').innerHTML='';
+  matches.forEach(it=>{
+    const target = it.tipo==='PRISÃO' ? $('histPrisao') : $('histBopc');
+    const el=document.createElement('div');
+    el.className='hist-item';
+    const left=document.createElement('div');
+    left.innerHTML = `<div style="font-weight:800">${escapeHtml(it.tipo)} — ${escapeHtml(it.data||'—')}</div>
+                     <div class="small">${escapeHtml(it.natureza||'')} • ${escapeHtml((it.involved||[]).map(p=>p.nome).join(', ')||it.nomePrincipal||'—')}</div>`;
+    const right=document.createElement('div');
+    right.style.display='flex';
+    right.style.gap='8px';
+
+    const view=document.createElement('button');
+    view.className='ghost';
+    view.textContent='Ver';
+    view.onclick=()=>{ $('viewBopc').innerText = it.bopcText||it.text||'(sem texto)'; openViewModal(); };
+
+    const del=document.createElement('button');
+    del.className='ghost';
+    del.textContent='Apagar';
+    del.onclick=()=>{ if(confirm('Apagar esta ocorrência?')){ deleteOccurrenceById(it._id); renderHistoryModal(); log('Ocorrência apagada.'); } };
+
+    right.append(view,del);
+    el.append(left,right);
+    target.appendChild(el);
+  });
+  showHistTab('bopc');
+}
+
+/*---------------------------------------------------*/ 
+/*  INPUTS → salvam rascunho */
+[
+  'b_data','b_hora','b_unidade','b_numero','b_local','b_natureza','b_objetos',
+  'b_relato','b_resp','b_funcao','b_funcao_outro',
+  'p_rg','p_bopm','p_req','p_itens','p_artigos','p_policiais','p_obs'
+].forEach(id=>{ const el=$(id); if(el) el.addEventListener('input', debounceSaveDraft); });
+
+/*---------------------------------------------------*/
+/*  INICIALIZAÇÃO */
+function init(){
+  if(!$('b_numero').value.trim()) $('b_numero').value = DEFAULT_PREFIX;
+  renderInv(); loadInvSel(); renderPreview('');
+  restoreDraft();
+  showHistTab('bopc');
+}
+init();
+</script>
+</body>
+</html>
