@@ -3,14 +3,18 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>DAS CIVIL | B.O.P.C + PRISÃO</title>
+<title>DAS CIVIL | B.O.P.C + PRISÃO (v4.0)</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <style>
-/* ========== VARIÁVEIS ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --bg1: #050507;
   --bg2: #14001f;
-  --card: #0d0a10;
   --accent: #a970ff;
   --accent-hover: #b87fff;
   --accent-light: rgba(169,112,255,0.15);
@@ -18,31 +22,14 @@
   --muted-dark: #8a85a0;
   --glass: rgba(255,255,255,0.04);
   --danger: #ff6b6b;
-  --danger-dark: #ff5252;
   --success: #4ade80;
-  --warning: #fbbf24;
-  --radius: 12px;
   --card-border: rgba(169,112,255,0.2);
   --text: #e0e0e0;
-  --bg-gradient: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
-  --shadow-sm: 0 4px 20px rgba(0,0,0,0.3);
-  --shadow-md: 0 8px 30px rgba(0,0,0,0.4);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
-  --transition: all 0.2s ease;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  height: 100%;
+  --radius: 12px;
 }
 
 body {
-  background: var(--bg-gradient);
+  background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
   background-attachment: fixed;
   color: var(--muted);
   font-family: 'Inter', sans-serif;
@@ -51,11 +38,10 @@ body {
 }
 
 .wrap {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-/* ========== HEADER ========== */
 header {
   display: flex;
   align-items: center;
@@ -73,25 +59,20 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  letter-spacing: -0.5px;
 }
 
 h1 small {
   font-size: 0.75rem;
   color: var(--muted-dark);
   display: block;
-  font-weight: 400;
-  letter-spacing: normal;
 }
 
-/* ========== TABS ========== */
 .tabs {
   display: flex;
   gap: 12px;
   background: rgba(0,0,0,0.3);
   padding: 4px;
   border-radius: 40px;
-  backdrop-filter: blur(10px);
 }
 
 .nav-tab {
@@ -102,8 +83,7 @@ h1 small {
   cursor: pointer;
   color: var(--muted);
   font-weight: 600;
-  font-size: 0.95rem;
-  transition: var(--transition);
+  transition: all 0.2s ease;
 }
 
 .nav-tab.active {
@@ -117,14 +97,12 @@ h1 small {
   color: white;
 }
 
-/* ========== CARD ========== */
 .card {
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   backdrop-filter: blur(2px);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
   margin-top: 20px;
 }
 
@@ -132,7 +110,6 @@ h1 small {
   padding: 24px;
 }
 
-/* ========== GRID ========== */
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -144,7 +121,6 @@ h1 small {
 .col-6 { grid-column: span 6; }
 .col-12 { grid-column: span 12; }
 
-/* ========== FORMULÁRIO ========== */
 label {
   font-size: 0.8rem;
   font-weight: 600;
@@ -163,7 +139,7 @@ input, textarea, select {
   background: rgba(0,0,0,0.4);
   color: var(--text);
   font-size: 0.9rem;
-  transition: var(--transition);
+  transition: all 0.2s ease;
   font-family: 'Inter', sans-serif;
 }
 
@@ -178,14 +154,13 @@ textarea {
   min-height: 100px;
 }
 
-/* ========== BOTÕES ========== */
 .btn {
   padding: 12px 20px;
   border-radius: 10px;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.2s ease;
   border: none;
   display: inline-flex;
   align-items: center;
@@ -197,7 +172,6 @@ textarea {
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), #8b5cf6);
   color: white;
-  box-shadow: 0 4px 15px rgba(169,112,255,0.3);
 }
 
 .btn-primary:hover {
@@ -205,9 +179,14 @@ textarea {
   box-shadow: 0 6px 20px rgba(169,112,255,0.4);
 }
 
-.btn-secondary {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--glass);
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16,185,129,0.4);
 }
 
 .btn-secondary:hover {
@@ -221,11 +200,6 @@ textarea {
   border: 1px solid rgba(255,107,107,0.3);
 }
 
-.btn-danger:hover {
-  background: rgba(255,107,107,0.3);
-  color: #ff8a8a;
-}
-
 .btn-group {
   display: flex;
   gap: 12px;
@@ -233,17 +207,16 @@ textarea {
   margin-top: 8px;
 }
 
-/* ========== ENVOLVIDOS ========== */
-.involved-list {
+.involved-list, .police-list, .vehicle-list {
   margin-top: 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 300px;
+  max-height: 400px;
   overflow-y: auto;
 }
 
-.inv-card {
+.inv-card, .police-card, .vehicle-card {
   background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
   border: 1px solid var(--glass);
   padding: 12px 16px;
@@ -251,30 +224,33 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: var(--transition);
+  transition: all 0.2s ease;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.inv-card:hover {
+.inv-card:hover, .police-card:hover, .vehicle-card:hover {
   border-color: var(--accent-light);
   background: rgba(169,112,255,0.05);
 }
 
-.inv-info {
+.inv-info, .police-info, .vehicle-info {
   flex: 1;
 }
 
-.inv-name {
+.inv-name, .police-name, .vehicle-name {
   font-weight: 700;
   color: var(--accent);
+  font-size: 1rem;
 }
 
-.inv-rg {
+.inv-rg, .police-rg {
   font-size: 0.75rem;
   color: var(--muted-dark);
   margin-left: 8px;
 }
 
-.inv-situation {
+.inv-situation, .police-role {
   font-size: 0.7rem;
   padding: 2px 8px;
   border-radius: 20px;
@@ -283,17 +259,12 @@ textarea {
   margin-top: 4px;
 }
 
-.inv-actions {
-  display: flex;
-  gap: 8px;
+.inv-details, .vehicle-details {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 4px;
 }
 
-.inv-actions button {
-  padding: 6px 12px;
-  font-size: 0.7rem;
-}
-
-/* ========== OUTPUT ========== */
 .output {
   background: rgba(0,0,0,0.4);
   border-radius: 10px;
@@ -304,12 +275,11 @@ textarea {
   font-size: 0.85rem;
   border: 1px solid var(--glass);
   color: var(--text);
-  max-height: 400px;
+  max-height: 500px;
   overflow-y: auto;
   line-height: 1.6;
 }
 
-/* ========== PREVIEW ========== */
 .preview-wrap {
   margin-top: 20px;
 }
@@ -350,7 +320,6 @@ textarea {
   font-size: 0.85rem;
 }
 
-/* ========== MODAL ========== */
 .modal-back {
   position: fixed;
   inset: 0;
@@ -371,7 +340,6 @@ textarea {
   max-width: 900px;
   max-height: 85vh;
   overflow-y: auto;
-  box-shadow: var(--shadow-lg);
 }
 
 .modal-header {
@@ -381,19 +349,14 @@ textarea {
   margin-bottom: 20px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--glass);
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .modal-title {
   font-weight: 800;
   font-size: 1.25rem;
   color: var(--accent);
-}
-
-/* ========== HISTÓRICO ========== */
-.hist-controls {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
 }
 
 .hist-section {
@@ -422,12 +385,10 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: var(--transition);
 }
 
 .hist-item:hover {
   background: rgba(169,112,255,0.05);
-  border-color: var(--accent-light);
 }
 
 .hist-info {
@@ -446,7 +407,6 @@ textarea {
   margin-top: 4px;
 }
 
-/* ========== NOTIFICAÇÕES ========== */
 .top-notif {
   position: fixed;
   top: 20px;
@@ -459,7 +419,6 @@ textarea {
   color: var(--text);
   display: none;
   z-index: 11000;
-  box-shadow: var(--shadow-lg);
   min-width: 320px;
   text-align: center;
 }
@@ -468,12 +427,6 @@ textarea {
   font-weight: 700;
   color: var(--accent);
   margin-bottom: 8px;
-}
-
-.top-notif .small {
-  font-size: 0.75rem;
-  color: var(--muted-dark);
-  margin-bottom: 12px;
 }
 
 .mini-log {
@@ -509,53 +462,12 @@ textarea {
   }
 }
 
-/* ========== UTILIDADES ========== */
 small, .small {
   font-size: 0.7rem;
   color: var(--muted-dark);
 }
 
-.divider {
-  height: 1px;
-  background: var(--glass);
-  margin: 16px 0;
-}
-
-/* ========== RESPONSIVO ========== */
-@media (max-width: 1024px) {
-  .grid {
-    gap: 16px;
-  }
-  .col-3, .col-4, .col-6 {
-    grid-column: span 12;
-  }
-}
-
-@media (max-width: 768px) {
-  body {
-    padding: 16px;
-  }
-  header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .tabs {
-    justify-content: center;
-  }
-  .card-content {
-    padding: 16px;
-  }
-  .btn-group {
-    flex-direction: column;
-  }
-  .mini-log {
-    width: 280px;
-    right: 10px;
-    bottom: 10px;
-  }
-}
-
-/* ========== COMPACT MODE ========== */
+/* ========== COMPACT MODE CSS ========== */
 .compact .card-content {
   padding: 12px;
 }
@@ -578,6 +490,35 @@ small, .small {
   padding: 8px 16px;
   font-size: 0.75rem;
 }
+
+.compact .inv-card, .compact .police-card, .compact .vehicle-card {
+  padding: 8px 12px;
+}
+
+.compact .output {
+  font-size: 0.75rem;
+  padding: 12px;
+}
+
+@media (max-width: 1024px) {
+  .col-3, .col-4, .col-6 {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 16px;
+  }
+  .card-content {
+    padding: 16px;
+  }
+  .mini-log {
+    width: 280px;
+    right: 10px;
+    bottom: 10px;
+  }
+}
 </style>
 </head>
 <body>
@@ -585,14 +526,14 @@ small, .small {
   <header>
     <h1>
       🛡️ DAS CIVIL
-      <small>Divisão Antissequestro • Sistema de BOPC e Prisão</small>
+      <small>Divisão Antissequestro • BOPC e Prisão v4.0</small>
     </h1>
     <div style="display: flex; gap: 12px; align-items: center;">
       <div class="tabs">
         <button class="nav-tab active" data-target="bopc">📋 B.O.P.C</button>
         <button class="nav-tab" data-target="prisao">🔒 PRISÃO</button>
       </div>
-      <button class="nav-tab" id="toggleCompact" style="padding: 8px 16px;">📱 Modo Compacto</button>
+      <button class="nav-tab" id="toggleCompact">📱 Modo Compacto</button>
     </div>
   </header>
 
@@ -600,23 +541,65 @@ small, .small {
   <section id="bopcCard" class="card" style="display: block;">
     <div class="card-content">
       <div class="grid">
+        <!-- Cabeçalho BOPC -->
         <div class="col-3"><label>📅 Data</label><input id="b_data" placeholder="DD/MM/AAAA" type="text"/></div>
         <div class="col-3"><label>⏰ Hora</label><input id="b_hora" placeholder="HH:MM" type="text"/></div>
         <div class="col-6"><label>🏢 Unidade</label><input id="b_unidade" placeholder="Ex: DENARC, DHPP, DAS" type="text"/></div>
         <div class="col-12"><label>🔢 Nº Ocorrência</label><input id="b_numero" type="text" value="BOPC "/></div>
         
+        <!-- POLICIAIS ENVOLVIDOS -->
         <div class="col-12">
-          <label>👥 Adicionar Envolvido</label>
+          <label>👮‍♂️ POLICIAIS ENVOLVIDOS NA AÇÃO</label>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <input id="inv_nome" placeholder="Nome | RG (Ex: Pedro Silva | 1830)" style="flex: 2;" type="text"/>
+            <select id="police_role" style="flex: 1;">
+              <option value="Encarregado">👮 Encarregado</option>
+              <option value="Motorista">🚗 Motorista</option>
+              <option value="3° Homem">👤 3° Homem</option>
+              <option value="4° Homem">👥 4° Homem</option>
+            </select>
+            <input id="police_nome" placeholder="Nome do Policial | RG" style="flex: 2;" type="text"/>
+            <button class="btn btn-secondary" id="btnAddPolice">➕ Adicionar Policial</button>
+          </div>
+          <small>Adicione os policiais com suas respectivas funções na ocorrência.</small>
+        </div>
+        
+        <div class="col-12">
+          <label>📋 Lista de Policiais</label>
+          <div class="police-list" id="policeList"></div>
+        </div>
+
+        <!-- VEÍCULOS ENVOLVIDOS -->
+        <div class="col-12">
+          <label>🚗 VEÍCULOS ENVOLVIDOS NA OCORRÊNCIA</label>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <input id="vehicle_desc" placeholder="Modelo, Placa, Cor (Ex: VW Gol, ABC-1234, Preto)" style="flex: 3;" type="text"/>
+            <input id="vehicle_owner" placeholder="Proprietário/Condutor" style="flex: 2;" type="text"/>
+            <button class="btn btn-secondary" id="btnAddVehicle">➕ Adicionar Veículo</button>
+          </div>
+          <small>Adicione todos os veículos envolvidos (podem ter mais de um).</small>
+        </div>
+        
+        <div class="col-12">
+          <label>📋 Lista de Veículos</label>
+          <div class="vehicle-list" id="vehicleList"></div>
+        </div>
+
+        <!-- ENVOLVIDOS (SUSPEITOS/VÍTIMAS) -->
+        <div class="col-12">
+          <label>👥 ENVOLVIDOS (SUSPEITOS/VÍTIMAS/TESTEMUNHAS)</label>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <input id="inv_nome" placeholder="Nome | RG" style="flex: 2;" type="text"/>
             <select id="inv_situ" style="flex: 1;">
               <option>Autor</option>
               <option>Vítima</option>
               <option>Testemunha</option>
             </select>
-            <button class="btn btn-secondary" id="btnAddInv">➕ Adicionar</button>
           </div>
-          <small>Digite "Nome | RG" para facilitar a identificação</small>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px;">
+            <input id="inv_roupa" placeholder="Roupa / Descrição Física" style="flex: 2;" type="text"/>
+            <button class="btn btn-secondary" id="btnAddInv">➕ Adicionar Envolvido</button>
+          </div>
+          <small>Informe Nome | RG e descrição da roupa para cada envolvido.</small>
         </div>
         
         <div class="col-12">
@@ -625,14 +608,17 @@ small, .small {
         </div>
         
         <div class="col-12"><label>📍 Local do Fato</label><input id="b_local" placeholder="Endereço completo" type="text"/></div>
-        <div class="col-12"><label>⚖️ Natureza da Ocorrência</label><textarea id="b_natureza" placeholder="Artigos e descrição da natureza" rows="3"></textarea></div>
-        <div class="col-12"><label>📦 Objetos Apreendidos</label><textarea id="b_objetos" placeholder="Listar todos os itens apreendidos" rows="3"></textarea></div>
+        <div class="col-12"><label>⚖️ Natureza da Ocorrência</label><textarea id="b_natureza" placeholder="Artigos e descrição da natureza" rows="2"></textarea></div>
+        <div class="col-12"><label>📦 Itens Apreendidos</label><textarea id="b_objetos" placeholder="Listar todos os itens apreendidos (armas, drogas, dinheiro)" rows="2"></textarea></div>
+        
+        <!-- BOTÃO DO PROMPT -->
         <div class="col-12">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <label>📝 Descrição dos Fatos</label>
-            <button class="btn btn-secondary" id="btnGPT" style="padding: 6px 12px;">🤖 Melhorar com IA</button>
+            <label>📝 DESCRIÇÃO DOS FATOS (RELATO INICIAL)</label>
           </div>
           <textarea id="b_relato" rows="6" placeholder="Descreva detalhadamente os fatos..."></textarea>
+          <button class="btn btn-success" id="btnGPT" style="margin-top: 12px; width: 100%;">🤖 GERAR PROMPT PARA IA - COPIAR TUDO</button>
+          <small style="display: block; margin-top: 8px;">Clique no botão acima para copiar um prompt completo com todos os dados para o ChatGPT gerar o BOPC perfeito.</small>
         </div>
         
         <div class="col-6"><label>👤 Responsável</label><input id="b_resp" placeholder="Nome completo" type="text"/></div>
@@ -659,10 +645,7 @@ small, .small {
         </div>
         
         <div class="col-12">
-          <label style="display: flex; align-items: center; gap: 8px;">
-            <input type="checkbox" id="chkSalvarHist" style="width: 18px; height: 18px; margin: 0;" checked/>
-            💾 Salvar no histórico (desmarque para rascunho)
-          </label>
+          <label><input type="checkbox" id="chkSalvarHist" checked/> 💾 Salvar no histórico</label>
         </div>
         
         <div class="col-12 btn-group">
@@ -671,7 +654,6 @@ small, .small {
           <button class="btn btn-secondary" id="btnCopiarB">📋 Copiar</button>
           <button class="btn btn-secondary" id="btnLimparB">♻️ Limpar</button>
           <button class="btn btn-secondary" id="btnHistOpen">📚 Histórico</button>
-          <button class="btn btn-danger" id="btnClearDraft">🗑️ Limpar Rascunho</button>
         </div>
         
         <div class="col-12">
@@ -681,7 +663,7 @@ small, .small {
         <div class="col-12 preview-wrap">
           <div class="preview-card">
             <div class="preview-header">
-              <img alt="Brasão DAS" id="previewBadge" src="https://cdn.discordapp.com/attachments/1366278927902965840/1448213373903962132/OIP.png?ex=693a714e&is=69391fce&hm=529ff773e3687d8ef1dc3809698284f216a43690c84ae446775c6d58b2e0a18d&"/>
+              <img alt="Brasão DAS" src="https://cdn.discordapp.com/attachments/1366278927902965840/1448213373903962132/OIP.png?ex=693a714e&is=69391fce&hm=529ff773e3687d8ef1dc3809698284f216a43690c84ae446775c6d58b2e0a18d&"/>
               <div class="preview-title">BOLETIM DE OCORRÊNCIA POLICIAL CIVIL</div>
             </div>
             <div class="preview-body" id="previewBody"><small>Preview vazio — gere o BOPC para visualizar.</small></div>
@@ -691,37 +673,24 @@ small, .small {
     </div>
   </section>
 
-  <!-- PRISÃO SECTION (COM OPÇÃO MANUAL) -->
+  <!-- PRISÃO SECTION -->
   <section id="prisaoCard" class="card" style="display: none;">
     <div class="card-content">
       <div class="grid">
-        <div class="col-12">
-          <label>👤 Selecionar Envolvido do BOPC (ou deixe em branco para manual)</label>
-          <select id="selEnvolvido">
-            <option value="">-- MANUAL: Preencha os campos abaixo --</option>
-          </select>
-        </div>
-        
-        <div class="col-6"><label>📛 Nome do Preso</label><input id="p_nome" placeholder="Nome completo do preso" type="text"/></div>
-        <div class="col-6"><label>🆔 RG / Documento</label><input id="p_rg" placeholder="RG, CPF ou documento" type="text"/></div>
-        
-        <div class="col-6"><label>🔢 Nº BOPC Relacionado</label><input id="p_bopm" placeholder="Número do BOPC (se houver)" type="text"/></div>
-        <div class="col-6"><label>👮 Requerente</label><input id="p_req" placeholder="Nome do responsável pela prisão" type="text"/></div>
-        
-        <div class="col-12"><label>📦 Itens Ilícitos / Flagrantes</label><textarea id="p_itens" placeholder="Listar itens apreendidos, drogas, armas, etc." rows="4"></textarea></div>
-        <div class="col-12"><label>⚖️ Artigos / Fundamentação Legal</label><textarea id="p_artigos" placeholder="Ex: Art. 157, Art. 33 da Lei 11.343/06" rows="3"></textarea></div>
-        <div class="col-12"><label>👮‍♂️ Policiais Envolvidos na Prisão</label><textarea id="p_policiais" placeholder="Nomes e funções dos policiais que participaram" rows="3"></textarea></div>
-        <div class="col-12"><label>📝 Observações / Detalhes</label><textarea id="p_obs" placeholder="Informações adicionais sobre a prisão" rows="4">N/A</textarea></div>
-        
+        <div class="col-12"><label>👤 Nome do Preso</label><input id="p_nome" placeholder="Nome completo" type="text"/></div>
+        <div class="col-12"><label>🆔 RG / Documento</label><input id="p_rg" placeholder="RG, CPF" type="text"/></div>
+        <div class="col-12"><label>🔢 Nº BOPC Relacionado</label><input id="p_bopm" placeholder="Número do BOPC" type="text"/></div>
+        <div class="col-12"><label>👮 Requerente</label><input id="p_req" placeholder="Nome do responsável" type="text"/></div>
+        <div class="col-12"><label>📦 Itens Ilícitos</label><textarea id="p_itens" rows="3"></textarea></div>
+        <div class="col-12"><label>⚖️ Artigos</label><textarea id="p_artigos" rows="2"></textarea></div>
+        <div class="col-12"><label>👮‍♂️ Policiais Envolvidos</label><textarea id="p_policiais" rows="2"></textarea></div>
+        <div class="col-12"><label>📝 Observações</label><textarea id="p_obs" rows="3">N/A</textarea></div>
         <div class="col-12 btn-group">
           <button class="btn btn-primary" id="btnGerarP">📝 Gerar Auto de Prisão</button>
           <button class="btn btn-secondary" id="btnCopiarP">📋 Copiar</button>
           <button class="btn btn-secondary" id="btnLimparP">♻️ Limpar</button>
         </div>
-        
-        <div class="col-12">
-          <pre class="output" id="saidaP"></pre>
-        </div>
+        <div class="col-12"><pre class="output" id="saidaP"></pre></div>
       </div>
     </div>
   </section>
@@ -731,21 +700,12 @@ small, .small {
 <div class="modal-back" id="modalBack">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title">📚 Histórico de Ocorrências</div>
-      <div class="btn-group" style="margin: 0;">
-        <button class="btn btn-secondary" id="tabHistBopc">BOPC</button>
-        <button class="btn btn-secondary" id="tabHistPrisao">PRISÃO</button>
-        <button class="btn btn-danger" id="btnClearHistory">Limpar Tudo</button>
-        <button class="btn btn-secondary" id="btnCloseModal">Fechar</button>
-      </div>
+      <div class="modal-title">📚 Histórico</div>
+      <button class="btn btn-secondary" id="btnCloseModal">Fechar</button>
     </div>
-    <div id="sectionBopc" class="hist-section">
-      <div class="hist-title">📋 BOPCs Registrados</div>
-      <div class="hist-list" id="histBopc"></div>
-    </div>
-    <div id="sectionPrisao" class="hist-section" style="display: none;">
-      <div class="hist-title">🔒 Prisões Registradas</div>
-      <div class="hist-list" id="histPrisao"></div>
+    <div class="hist-section">
+      <div class="hist-title">📋 Registros</div>
+      <div class="hist-list" id="histList"></div>
     </div>
   </div>
 </div>
@@ -753,16 +713,15 @@ small, .small {
 <div class="modal-back" id="modalViewBack">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title">📄 Visualizar Registro</div>
+      <div class="modal-title">📄 Visualizar</div>
       <button class="btn btn-secondary" id="closeView">Fechar</button>
     </div>
-    <pre id="viewContent" style="white-space: pre-wrap; background: transparent; border: none; color: var(--text); font-family: monospace; line-height: 1.6;"></pre>
+    <pre id="viewContent" style="white-space: pre-wrap; background: transparent; border: none; color: var(--text);"></pre>
   </div>
 </div>
 
 <div class="top-notif" id="topNotif">
   <div class="msg" id="topNotifMsg"></div>
-  <div class="small" id="topNotifSub"></div>
   <div class="btn-group" style="justify-content: center; margin-top: 12px;">
     <button class="btn btn-secondary" id="topNotifNo">✖ Não</button>
     <button class="btn btn-primary" id="topNotifYes">✔ Sim</button>
@@ -774,8 +733,8 @@ small, .small {
 <script>
 // ========== CONFIGURAÇÕES ==========
 const STORAGE_KEYS = {
-  HISTORY: 'das_bopc_history_v2',
-  DRAFT: 'das_bopc_draft_v2',
+  HISTORY: 'das_bopc_history_v4',
+  DRAFT: 'das_bopc_draft_v4',
   COMPACT: 'das_compact_mode'
 };
 
@@ -783,9 +742,9 @@ const DEFAULT_BOPC_NUM = 'BOPC ';
 
 // ========== ESTADO GLOBAL ==========
 let involvedList = [];
-let pendingSave = null;
+let policeList = [];
+let vehicleList = [];
 
-// ========== UTILITÁRIOS ==========
 const $ = id => document.getElementById(id);
 
 function log(msg) {
@@ -794,10 +753,7 @@ function log(msg) {
   el.className = 'log-item';
   el.textContent = `📌 ${new Date().toLocaleTimeString()} - ${msg}`;
   container.appendChild(el);
-  setTimeout(() => {
-    el.style.opacity = '0';
-    setTimeout(() => el.remove(), 300);
-  }, 4000);
+  setTimeout(() => el.remove(), 4000);
 }
 
 function escapeHtml(str) {
@@ -810,11 +766,6 @@ function escapeHtml(str) {
   });
 }
 
-function formatDateBR(date) {
-  const d = new Date(date);
-  return d.toLocaleDateString('pt-BR');
-}
-
 function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2, 6);
 }
@@ -822,19 +773,14 @@ function generateId() {
 function parseNomeRG(str) {
   if (!str) return { nome: '', rg: '' };
   const parts = str.split('|');
-  return {
-    nome: (parts[0] || '').trim(),
-    rg: (parts[1] || '').trim()
-  };
+  return { nome: (parts[0] || '').trim(), rg: (parts[1] || '').trim() };
 }
 
 // ========== STORAGE ==========
 function loadHistory() {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEYS.HISTORY) || '[]');
-  } catch {
-    return [];
-  }
+  } catch { return []; }
 }
 
 function saveHistory(history) {
@@ -844,31 +790,55 @@ function saveHistory(history) {
 function loadDraft() {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEYS.DRAFT) || '{}');
-  } catch {
-    return {};
-  }
+  } catch { return {}; }
 }
 
 function saveDraft(data) {
   localStorage.setItem(STORAGE_KEYS.DRAFT, JSON.stringify(data));
 }
 
-function clearDraft() {
-  localStorage.removeItem(STORAGE_KEYS.DRAFT);
-  log('Rascunho limpo com sucesso!');
+// ========== RENDER LISTS ==========
+function renderPolice() {
+  const container = $('policeList');
+  if (!container) return;
+  container.innerHTML = '';
+  policeList.forEach((p, idx) => {
+    const parsed = parseNomeRG(p.nome);
+    const div = document.createElement('div');
+    div.className = 'police-card';
+    div.innerHTML = `
+      <div class="police-info">
+        <span class="police-name">${escapeHtml(p.role)}</span>
+        <span class="police-name">${escapeHtml(parsed.nome || 'Sem nome')}</span>
+        ${parsed.rg ? `<span class="police-rg">| ${escapeHtml(parsed.rg)}</span>` : ''}
+      </div>
+      <button class="btn btn-danger" onclick="removePolice(${idx})">🗑️</button>
+    `;
+    container.appendChild(div);
+  });
 }
 
-function isDuplicate(record) {
-  const history = loadHistory();
-  const key = `${record.tipo}|${record.data || ''}|${record.texto?.substring(0, 100) || ''}`;
-  return history.some(r => `${r.tipo}|${r.data || ''}|${r.texto?.substring(0, 100) || ''}` === key);
+function renderVehicles() {
+  const container = $('vehicleList');
+  if (!container) return;
+  container.innerHTML = '';
+  vehicleList.forEach((v, idx) => {
+    const div = document.createElement('div');
+    div.className = 'vehicle-card';
+    div.innerHTML = `
+      <div class="vehicle-info">
+        <strong>🚗 Veículo:</strong> ${escapeHtml(v.desc)}<br>
+        ${v.owner ? `<strong>👤 Condutor/Proprietário:</strong> ${escapeHtml(v.owner)}` : ''}
+      </div>
+      <button class="btn btn-danger" onclick="removeVehicle(${idx})">🗑️</button>
+    `;
+    container.appendChild(div);
+  });
 }
 
-// ========== RENDER ENVOLVIDOS ==========
 function renderInvolved() {
   const container = $('involvedList');
   if (!container) return;
-  
   container.innerHTML = '';
   involvedList.forEach((inv, idx) => {
     const parsed = parseNomeRG(inv.nome);
@@ -876,517 +846,357 @@ function renderInvolved() {
     div.className = 'inv-card';
     div.innerHTML = `
       <div class="inv-info">
-        <div>
-          <span class="inv-name">${escapeHtml(parsed.nome || 'Sem nome')}</span>
-          ${parsed.rg ? `<span class="inv-rg">| ${escapeHtml(parsed.rg)}</span>` : ''}
-        </div>
-        <div class="inv-situation">${escapeHtml(inv.situ)}</div>
+        <span class="inv-name">${escapeHtml(parsed.nome || 'Sem nome')}</span>
+        ${parsed.rg ? `<span class="inv-rg">| RG: ${escapeHtml(parsed.rg)}</span>` : ''}
+        <span class="inv-situation">${escapeHtml(inv.situ)}</span>
+        <div class="inv-details">${inv.roupa ? `👕 Roupa: ${escapeHtml(inv.roupa)}` : ''}</div>
       </div>
-      <div class="inv-actions">
-        <button class="btn btn-secondary" onclick="editInvolved(${idx})">✏️</button>
-        <button class="btn btn-danger" onclick="removeInvolved(${idx})">🗑️</button>
-      </div>
+      <button class="btn btn-danger" onclick="removeInvolved(${idx})">🗑️</button>
     `;
     container.appendChild(div);
   });
-  
-  // Atualizar select de envolvidos na prisão
-  const sel = $('selEnvolvido');
-  if (sel) {
-    sel.innerHTML = '<option value="">-- MANUAL: Preencha os campos abaixo --</option>';
-    involvedList.forEach((inv, idx) => {
-      const parsed = parseNomeRG(inv.nome);
-      const option = document.createElement('option');
-      option.value = idx;
-      option.textContent = `${parsed.nome} ${parsed.rg ? `| ${parsed.rg}` : ''} (${inv.situ})`;
-      sel.appendChild(option);
-    });
-  }
 }
 
-window.editInvolved = function(idx) {
-  const inv = involvedList[idx];
-  const parsed = parseNomeRG(inv.nome);
-  const novoNome = prompt('Editar nome | RG:', inv.nome);
-  if (novoNome !== null) {
-    const novaSitu = prompt('Editar situação (Autor/Vítima/Testemunha):', inv.situ);
-    if (novaSitu !== null) {
-      involvedList[idx] = { ...inv, nome: novoNome, situ: novaSitu };
-      renderInvolved();
-      saveDraftToStorage();
-      log('Envolvido atualizado');
-    }
-  }
-};
-
-window.removeInvolved = function(idx) {
-  if (confirm('Remover este envolvido?')) {
-    involvedList.splice(idx, 1);
-    renderInvolved();
-    saveDraftToStorage();
-    log('Envolvido removido');
-  }
-};
+window.removePolice = (idx) => { policeList.splice(idx, 1); renderPolice(); saveDraftToStorage(); log('Policial removido'); };
+window.removeVehicle = (idx) => { vehicleList.splice(idx, 1); renderVehicles(); saveDraftToStorage(); log('Veículo removido'); };
+window.removeInvolved = (idx) => { involvedList.splice(idx, 1); renderInvolved(); saveDraftToStorage(); log('Envolvido removido'); };
 
 // ========== BUILD BOPC TEXT ==========
 function buildBopcText() {
-  let text = `**BOLETIM DE OCORRÊNCIA POLICIAL CIVIL (B.O.P.C)**\n\n`;
-  text += `**Data:** ${$('b_data').value || '___/___/____'}   **Hora:** ${$('b_hora').value || '__:__'}\n`;
-  text += `**Unidade:** ${$('b_unidade').value || 'DAS - Divisão Antissequestro'}\n`;
-  text += `**Nº Ocorrência:** ${$('b_numero').value || DEFAULT_BOPC_NUM}\n\n`;
+  let text = `BOLETIM DE OCORRÊNCIA POLICIAL CIVIL (B.O.P.C)\n\n`;
+  text += `Data: ${$('b_data').value || '___/___/____'}   Hora: ${$('b_hora').value || '__:__'}\n`;
+  text += `Unidade: ${$('b_unidade').value || 'DAS - Divisão Antissequestro'}\n`;
+  text += `Nº Ocorrência: ${$('b_numero').value || DEFAULT_BOPC_NUM}\n\n`;
   
-  text += `**1. ENVOLVIDOS**\n`;
-  if (involvedList.length === 0) {
-    text += `Nenhum envolvido informado.\n\n`;
-  } else {
-    involvedList.forEach(inv => {
-      const parsed = parseNomeRG(inv.nome);
-      text += `Nome: ${parsed.nome || 'Não informado'} ${parsed.rg ? `| ${parsed.rg}` : ''}\n`;
-      text += `Situação: ${inv.situ}\n\n`;
+  text += `POLICIAIS ENVOLVIDOS:\n`;
+  if (policeList.length === 0) text += `Nenhum policial informado.\n\n`;
+  else {
+    policeList.forEach(p => {
+      const parsed = parseNomeRG(p.nome);
+      text += `- ${p.role}: ${parsed.nome || 'Não informado'}${parsed.rg ? ` | ${parsed.rg}` : ''}\n`;
     });
+    text += `\n`;
   }
   
-  text += `**2. LOCAL DO FATO**\n${$('b_local').value || 'Não informado'}\n\n`;
-  text += `**3. NATUREZA DA OCORRÊNCIA**\n${$('b_natureza').value || 'Não informada'}\n\n`;
-  text += `**4. OBJETOS APREENDIDOS**\n${$('b_objetos').value || 'Nenhum'}\n\n`;
-  text += `**5. DESCRIÇÃO DOS FATOS**\n${$('b_relato').value || 'Não informada'}\n\n`;
+  text += `VEÍCULOS ENVOLVIDOS:\n`;
+  if (vehicleList.length === 0) text += `Nenhum veículo informado.\n\n`;
+  else {
+    vehicleList.forEach(v => {
+      text += `- ${v.desc}${v.owner ? ` (Condutor: ${v.owner})` : ''}\n`;
+    });
+    text += `\n`;
+  }
+  
+  text += `ENVOLVIDOS (SUSPEITOS/VÍTIMAS):\n`;
+  if (involvedList.length === 0) text += `Nenhum envolvido informado.\n\n`;
+  else {
+    involvedList.forEach(inv => {
+      const parsed = parseNomeRG(inv.nome);
+      text += `- ${parsed.nome || 'Não informado'}${parsed.rg ? ` | ${parsed.rg}` : ''} - ${inv.situ}\n`;
+      if (inv.roupa) text += `  Roupa: ${inv.roupa}\n`;
+    });
+    text += `\n`;
+  }
+  
+  text += `LOCAL DO FATO:\n${$('b_local').value || 'Não informado'}\n\n`;
+  text += `NATUREZA DA OCORRÊNCIA:\n${$('b_natureza').value || 'Não informada'}\n\n`;
+  text += `ITENS APREENDIDOS:\n${$('b_objetos').value || 'Nenhum'}\n\n`;
+  text += `DESCRIÇÃO DOS FATOS:\n${$('b_relato').value || 'Não informada'}\n\n`;
   
   let funcao = $('b_funcao').value;
   if (funcao === '__outro__') funcao = $('b_funcao_outro').value;
-  text += `**Responsável:** ${$('b_resp').value || 'Não informado'}\n`;
-  text += `**Função:** ${funcao || 'Não informada'}\n`;
+  text += `Responsável: ${$('b_resp').value || 'Não informado'} - ${funcao || 'Não informada'}\n`;
   
   return text;
 }
 
-// ========== BUILD PRISÃO TEXT (com suporte manual) ==========
 function buildPrisaoText() {
-  let text = `**AUTO DE PRISÃO EM FLAGRANTE**\n\n`;
+  return `AUTO DE PRISÃO EM FLAGRANTE\n\nPreso: ${$('p_nome').value || 'Não informado'}\nRG: ${$('p_rg').value || 'Não informado'}\nBOPC: ${$('p_bopm').value || 'Não informado'}\nRequerente: ${$('p_req').value || 'Não informado'}\n\nItens: ${$('p_itens').value || 'N/A'}\nArtigos: ${$('p_artigos').value || 'N/A'}\nPoliciais: ${$('p_policiais').value || 'N/A'}\nObs: ${$('p_obs').value || 'N/A'}`;
+}
+
+// ========== PROMPT GPT (COMPLETO) ==========
+$('btnGPT').onclick = async () => {
+  const relato = $('b_relato').value.trim();
+  if (!relato) { alert('Descreva os fatos primeiro!'); return; }
   
-  const selValue = $('selEnvolvido').value;
-  let nomePreso = $('p_nome').value;
-  let rgPreso = $('p_rg').value;
+  const policiais = policeList.map(p => {
+    const parsed = parseNomeRG(p.nome);
+    return `- ${p.role}: ${parsed.nome || 'Sem nome'}${parsed.rg ? ` (RG: ${parsed.rg})` : ''}`;
+  }).join('\n');
   
-  if (selValue !== '' && involvedList[parseInt(selValue)]) {
-    const inv = involvedList[parseInt(selValue)];
+  const veiculos = vehicleList.map(v => `- ${v.desc}${v.owner ? ` (Condutor: ${v.owner})` : ''}`).join('\n');
+  
+  const envolvidos = involvedList.map(inv => {
     const parsed = parseNomeRG(inv.nome);
-    if (!nomePreso) nomePreso = parsed.nome;
-    if (!rgPreso) rgPreso = parsed.rg;
-  }
+    return `- ${parsed.nome || 'Sem nome'}${parsed.rg ? ` (RG: ${parsed.rg})` : ''} - ${inv.situ}${inv.roupa ? `, Roupa: ${inv.roupa}` : ''}`;
+  }).join('\n');
   
-  text += `**PRESO:** ${nomePreso || 'Não informado'}\n`;
-  text += `**DOCUMENTO:** ${rgPreso || 'Não informado'}\n`;
-  text += `**BOPC RELACIONADO:** ${$('p_bopm').value || 'Não informado'}\n`;
-  text += `**REQUERENTE:** ${$('p_req').value || 'Não informado'}\n\n`;
+  let funcao = $('b_funcao').value;
+  if (funcao === '__outro__') funcao = $('b_funcao_outro').value;
   
-  text += `**ITENS ILÍCITOS / FLAGRANTES**\n${$('p_itens').value || 'Não informado'}\n\n`;
-  text += `**FUNDAMENTAÇÃO LEGAL**\n${$('p_artigos').value || 'Não informada'}\n\n`;
-  text += `**POLICIAIS ENVOLVIDOS**\n${$('p_policiais').value || 'Não informado'}\n\n`;
-  text += `**OBSERVAÇÕES**\n${$('p_obs').value || 'N/A'}\n`;
-  
-  return text;
-}
+  const prompt = `Atue como um Delegado de Polícia Civil experiente. Com base nas informações abaixo, redija um BOLETIM DE OCORRÊNCIA POLICIAL CIVIL (B.O.P.C) completo, formal e tecnicamente impecável.
 
-// ========== SALVAR NO HISTÓRICO ==========
-function saveToHistory(record) {
-  const history = loadHistory();
-  history.unshift(record);
-  saveHistory(history);
-  renderHistoryModal();
-  log(`${record.tipo} salvo no histórico!`);
-}
+INFORMAÇÕES:
+Data/Hora: ${$('b_data').value || 'N/I'} / ${$('b_hora').value || 'N/I'}
+Unidade: ${$('b_unidade').value || 'DAS'}
+Nº Ocorrência: ${$('b_numero').value || 'BOPC'}
 
-// ========== RENDER HISTÓRICO MODAL ==========
-function renderHistoryModal() {
-  const history = loadHistory();
-  const bopcList = history.filter(r => r.tipo === 'BOPC');
-  const prisaoList = history.filter(r => r.tipo === 'PRISÃO');
-  
-  const bopcContainer = $('histBopc');
-  const prisaoContainer = $('histPrisao');
-  
-  if (bopcContainer) {
-    bopcContainer.innerHTML = bopcList.length === 0 ? '<div class="small">Nenhum BOPC registrado.</div>' : '';
-    bopcList.forEach(rec => {
-      const div = document.createElement('div');
-      div.className = 'hist-item';
-      div.innerHTML = `
-        <div class="hist-info">
-          <div class="hist-date">${rec.data || 'Data não informada'}</div>
-          <div class="hist-desc">${escapeHtml(rec.texto?.substring(0, 100) || '')}...</div>
-        </div>
-        <div class="btn-group" style="margin: 0;">
-          <button class="btn btn-secondary" onclick="viewRecord(${JSON.stringify(rec.texto).replace(/"/g, '&quot;')})">Ver</button>
-          <button class="btn btn-danger" onclick="deleteRecord('${rec.id}')">Excluir</button>
-        </div>
-      `;
-      bopcContainer.appendChild(div);
-    });
-  }
-  
-  if (prisaoContainer) {
-    prisaoContainer.innerHTML = prisaoList.length === 0 ? '<div class="small">Nenhuma prisão registrada.</div>' : '';
-    prisaoList.forEach(rec => {
-      const div = document.createElement('div');
-      div.className = 'hist-item';
-      div.innerHTML = `
-        <div class="hist-info">
-          <div class="hist-date">${rec.data || 'Data não informada'}</div>
-          <div class="hist-desc">${escapeHtml(rec.texto?.substring(0, 100) || '')}...</div>
-        </div>
-        <div class="btn-group" style="margin: 0;">
-          <button class="btn btn-secondary" onclick="viewRecord(${JSON.stringify(rec.texto).replace(/"/g, '&quot;')})">Ver</button>
-          <button class="btn btn-danger" onclick="deleteRecord('${rec.id}')">Excluir</button>
-        </div>
-      `;
-      prisaoContainer.appendChild(div);
-    });
-  }
-}
+POLICIAIS ENVOLVIDOS:
+${policiais || 'Nenhum informado'}
 
-window.viewRecord = function(text) {
-  $('viewContent').textContent = text;
-  $('modalViewBack').style.display = 'flex';
+VEÍCULOS ENVOLVIDOS:
+${veiculos || 'Nenhum informado'}
+
+ENVOLVIDOS (SUSPEITOS/VÍTIMAS):
+${envolvidos || 'Nenhum informado'}
+
+LOCAL DO FATO:
+${$('b_local').value || 'Não informado'}
+
+NATUREZA DA OCORRÊNCIA:
+${$('b_natureza').value || 'Não informada'}
+
+ITENS APREENDIDOS:
+${$('b_objetos').value || 'Nenhum'}
+
+RELATO INICIAL:
+${relato}
+
+RESPONSÁVEL:
+${$('b_resp').value || 'Não informado'} (${funcao || ''})
+
+INSTRUÇÕES:
+1. Mantenha a estrutura formal do BOPC.
+2. Liste todos os envolvidos com nome, RG, situação e descrição de roupa.
+3. Liste os policiais com suas respectivas funções.
+4. Descreva os veículos envolvidos.
+5. Detalhe os itens apreendidos.
+6. Utilize linguagem técnica e formal.
+7. Corrija erros de português e mantenha a precisão dos fatos.
+
+BOLETIM DE OCORRÊNCIA POLICIAL CIVIL (B.O.P.C):`;
+
+  try {
+    await navigator.clipboard.writeText(prompt);
+    log('✅ Prompt copiado! Cole no ChatGPT.');
+    window.open('https://chat.openai.com/', '_blank');
+  } catch(err) { alert('Erro ao copiar'); }
 };
-
-window.deleteRecord = function(id) {
-  if (confirm('Excluir este registro permanentemente?')) {
-    let history = loadHistory();
-    history = history.filter(r => r.id !== id);
-    saveHistory(history);
-    renderHistoryModal();
-    log('Registro excluído');
-  }
-};
-
-// ========== SHOW TOP NOTIFICATION ==========
-function showTopNotif(msg, sub, onYes, onNo) {
-  $('topNotifMsg').textContent = msg;
-  $('topNotifSub').textContent = sub;
-  $('topNotif').style.display = 'block';
-  
-  const yesBtn = $('topNotifYes');
-  const noBtn = $('topNotifNo');
-  
-  const handlerYes = () => {
-    if (onYes) onYes();
-    $('topNotif').style.display = 'none';
-    yesBtn.removeEventListener('click', handlerYes);
-    noBtn.removeEventListener('click', handlerNo);
-  };
-  
-  const handlerNo = () => {
-    if (onNo) onNo();
-    $('topNotif').style.display = 'none';
-    yesBtn.removeEventListener('click', handlerYes);
-    noBtn.removeEventListener('click', handlerNo);
-  };
-  
-  yesBtn.addEventListener('click', handlerYes);
-  noBtn.addEventListener('click', handlerNo);
-}
 
 // ========== SALVAR RASCUNHO ==========
 function saveDraftToStorage() {
-  const draft = {
-    b_data: $('b_data').value,
-    b_hora: $('b_hora').value,
-    b_unidade: $('b_unidade').value,
-    b_numero: $('b_numero').value,
-    involved: involvedList,
-    b_local: $('b_local').value,
-    b_natureza: $('b_natureza').value,
-    b_objetos: $('b_objetos').value,
-    b_relato: $('b_relato').value,
-    b_resp: $('b_resp').value,
-    b_funcao: $('b_funcao').value,
-    b_funcao_outro: $('b_funcao_outro').value,
-    p_nome: $('p_nome')?.value || '',
-    p_rg: $('p_rg')?.value || '',
-    p_bopm: $('p_bopm')?.value || '',
-    p_req: $('p_req')?.value || '',
-    p_itens: $('p_itens')?.value || '',
-    p_artigos: $('p_artigos')?.value || '',
-    p_policiais: $('p_policiais')?.value || '',
-    p_obs: $('p_obs')?.value || ''
-  };
-  saveDraft(draft);
+  saveDraft({
+    b_data: $('b_data').value, b_hora: $('b_hora').value, b_unidade: $('b_unidade').value,
+    b_numero: $('b_numero').value, involved: involvedList, police: policeList, vehicles: vehicleList,
+    b_local: $('b_local').value, b_natureza: $('b_natureza').value, b_objetos: $('b_objetos').value,
+    b_relato: $('b_relato').value, b_resp: $('b_resp').value, b_funcao: $('b_funcao').value,
+    b_funcao_outro: $('b_funcao_outro')?.value || '',
+    p_nome: $('p_nome')?.value, p_rg: $('p_rg')?.value, p_bopm: $('p_bopm')?.value,
+    p_req: $('p_req')?.value, p_itens: $('p_itens')?.value, p_artigos: $('p_artigos')?.value,
+    p_policiais: $('p_policiais')?.value, p_obs: $('p_obs')?.value
+  });
 }
 
 function restoreDraft() {
-  const draft = loadDraft();
-  if (Object.keys(draft).length === 0) return;
+  const d = loadDraft();
+  if (Object.keys(d).length === 0) return;
+  if (d.b_data) $('b_data').value = d.b_data;
+  if (d.b_hora) $('b_hora').value = d.b_hora;
+  if (d.b_unidade) $('b_unidade').value = d.b_unidade;
+  if (d.b_numero) $('b_numero').value = d.b_numero;
+  if (d.involved) involvedList = d.involved;
+  if (d.police) policeList = d.police;
+  if (d.vehicles) vehicleList = d.vehicles;
+  if (d.b_local) $('b_local').value = d.b_local;
+  if (d.b_natureza) $('b_natureza').value = d.b_natureza;
+  if (d.b_objetos) $('b_objetos').value = d.b_objetos;
+  if (d.b_relato) $('b_relato').value = d.b_relato;
+  if (d.b_resp) $('b_resp').value = d.b_resp;
+  if (d.b_funcao) $('b_funcao').value = d.b_funcao;
+  if (d.b_funcao_outro && $('b_funcao_outro')) $('b_funcao_outro').value = d.b_funcao_outro;
+  if (d.p_nome && $('p_nome')) $('p_nome').value = d.p_nome;
+  if (d.p_rg && $('p_rg')) $('p_rg').value = d.p_rg;
+  if (d.p_bopm && $('p_bopm')) $('p_bopm').value = d.p_bopm;
+  if (d.p_req && $('p_req')) $('p_req').value = d.p_req;
+  if (d.p_itens && $('p_itens')) $('p_itens').value = d.p_itens;
+  if (d.p_artigos && $('p_artigos')) $('p_artigos').value = d.p_artigos;
+  if (d.p_policiais && $('p_policiais')) $('p_policiais').value = d.p_policiais;
+  if (d.p_obs && $('p_obs')) $('p_obs').value = d.p_obs;
   
-  if (draft.b_data) $('b_data').value = draft.b_data;
-  if (draft.b_hora) $('b_hora').value = draft.b_hora;
-  if (draft.b_unidade) $('b_unidade').value = draft.b_unidade;
-  if (draft.b_numero) $('b_numero').value = draft.b_numero;
-  if (draft.involved) involvedList = draft.involved;
-  if (draft.b_local) $('b_local').value = draft.b_local;
-  if (draft.b_natureza) $('b_natureza').value = draft.b_natureza;
-  if (draft.b_objetos) $('b_objetos').value = draft.b_objetos;
-  if (draft.b_relato) $('b_relato').value = draft.b_relato;
-  if (draft.b_resp) $('b_resp').value = draft.b_resp;
-  if (draft.b_funcao) $('b_funcao').value = draft.b_funcao;
-  if (draft.b_funcao_outro) $('b_funcao_outro').value = draft.b_funcao_outro;
-  if (draft.p_nome && $('p_nome')) $('p_nome').value = draft.p_nome;
-  if (draft.p_rg && $('p_rg')) $('p_rg').value = draft.p_rg;
-  if (draft.p_bopm && $('p_bopm')) $('p_bopm').value = draft.p_bopm;
-  if (draft.p_req && $('p_req')) $('p_req').value = draft.p_req;
-  if (draft.p_itens && $('p_itens')) $('p_itens').value = draft.p_itens;
-  if (draft.p_artigos && $('p_artigos')) $('p_artigos').value = draft.p_artigos;
-  if (draft.p_policiais && $('p_policiais')) $('p_policiais').value = draft.p_policiais;
-  if (draft.p_obs && $('p_obs')) $('p_obs').value = draft.p_obs;
+  // Mostrar/ocultar campo "Outro" se necessário
+  if ($('b_funcao').value === '__outro__' && $('b_funcao_outro')) {
+    $('b_funcao_outro').style.display = 'block';
+  }
   
-  renderInvolved();
+  renderPolice(); renderVehicles(); renderInvolved();
   log('Rascunho restaurado');
 }
 
-// ========== GERAR BOPC ==========
+// ========== ADICIONAR ITENS ==========
+$('btnAddPolice').onclick = () => {
+  const role = $('police_role').value;
+  const nome = $('police_nome').value.trim();
+  if (!nome) { alert('Informe o nome do policial!'); return; }
+  policeList.push({ role, nome });
+  $('police_nome').value = '';
+  renderPolice(); saveDraftToStorage(); log('Policial adicionado');
+};
+
+$('btnAddVehicle').onclick = () => {
+  const desc = $('vehicle_desc').value.trim();
+  if (!desc) { alert('Informe a descrição do veículo!'); return; }
+  vehicleList.push({ desc, owner: $('vehicle_owner').value.trim() });
+  $('vehicle_desc').value = ''; $('vehicle_owner').value = '';
+  renderVehicles(); saveDraftToStorage(); log('Veículo adicionado');
+};
+
+$('btnAddInv').onclick = () => {
+  const nome = $('inv_nome').value.trim();
+  if (!nome) { alert('Informe o nome do envolvido!'); return; }
+  involvedList.push({ nome, situ: $('inv_situ').value, roupa: $('inv_roupa').value.trim() });
+  $('inv_nome').value = ''; $('inv_roupa').value = '';
+  renderInvolved(); saveDraftToStorage(); log('Envolvido adicionado');
+};
+
+// ========== BOTÕES PRINCIPAIS ==========
 $('btnGerarB').onclick = () => {
   const text = buildBopcText();
   $('saidaB').innerText = text;
   $('previewBody').innerHTML = escapeHtml(text).replace(/\n/g, '<br>');
-  
   if ($('chkSalvarHist').checked) {
-    const record = {
-      id: generateId(),
-      tipo: 'BOPC',
-      data: $('b_data').value,
-      hora: $('b_hora').value,
-      texto: text,
-      natureza: $('b_natureza').value,
-      createdAt: Date.now()
-    };
-    
-    if (isDuplicate(record)) {
-      showTopNotif(
-        '⚠️ Registro duplicado detectado',
-        'Já existe uma ocorrência similar. Deseja salvar mesmo assim?',
-        () => { saveToHistory(record); },
-        () => { log('Salvamento cancelado'); }
-      );
-    } else {
-      saveToHistory(record);
-    }
-  } else {
-    log('BOPC gerado (rascunho - não salvo)');
+    const history = loadHistory();
+    history.unshift({ id: generateId(), tipo: 'BOPC', data: $('b_data').value, texto: text });
+    saveHistory(history);
+    log('BOPC salvo');
   }
 };
 
-// ========== GERAR PRISÃO ==========
 $('btnGerarP').onclick = () => {
   const text = buildPrisaoText();
   $('saidaP').innerText = text;
-  
   if ($('chkSalvarHist').checked) {
-    const nomePreso = $('p_nome').value || 'Não informado';
-    const record = {
-      id: generateId(),
-      tipo: 'PRISÃO',
-      data: $('b_data').value || new Date().toLocaleDateString('pt-BR'),
-      nomePreso,
-      texto: text,
-      createdAt: Date.now()
-    };
-    
-    if (isDuplicate(record)) {
-      showTopNotif(
-        '⚠️ Registro duplicado detectado',
-        `Já existe uma prisão registrada para ${nomePreso}. Deseja salvar mesmo assim?`,
-        () => { saveToHistory(record); },
-        () => { log('Salvamento cancelado'); }
-      );
-    } else {
-      saveToHistory(record);
-    }
-  } else {
-    log('Auto de prisão gerado (rascunho - não salvo)');
+    const history = loadHistory();
+    history.unshift({ id: generateId(), tipo: 'PRISÃO', data: new Date().toLocaleDateString(), texto: text });
+    saveHistory(history);
+    log('Prisão salva');
   }
 };
 
-// ========== COPIAR ==========
-$('btnCopiarB').onclick = () => {
-  const text = $('saidaB').innerText;
-  if (text) {
-    navigator.clipboard.writeText(text);
-    log('BOPC copiado para área de transferência!');
-  } else {
-    alert('Gere o BOPC primeiro!');
-  }
-};
+$('btnCopiarB').onclick = () => { const t = $('saidaB').innerText; if(t) { navigator.clipboard.writeText(t); log('Copiado!'); } else alert('Gere o BOPC primeiro!'); };
+$('btnCopiarP').onclick = () => { const t = $('saidaP').innerText; if(t) { navigator.clipboard.writeText(t); log('Copiado!'); } else alert('Gere a prisão primeiro!'); };
+$('btnNowB').onclick = () => { const n = new Date(); $('b_data').value = n.toLocaleDateString('pt-BR'); $('b_hora').value = n.toLocaleTimeString('pt-BR').slice(0,5); saveDraftToStorage(); };
 
-$('btnCopiarP').onclick = () => {
-  const text = $('saidaP').innerText;
-  if (text) {
-    navigator.clipboard.writeText(text);
-    log('Auto de prisão copiado!');
-  } else {
-    alert('Gere o auto de prisão primeiro!');
-  }
-};
-
-// ========== LIMPAR ==========
+// BOTÃO LIMPAR - MANTÉM OS POLICIAIS
 $('btnLimparB').onclick = () => {
-  if (confirm('Limpar todos os campos do BOPC?')) {
+  if(confirm('Limpar todos os campos? (Policiais serão mantidos)')) {
+    // Limpa campos de texto e selects (exceto policiais)
     ['b_data','b_hora','b_unidade','b_local','b_natureza','b_objetos','b_relato','b_resp'].forEach(id => {
-      if ($(id)) $(id).value = '';
+      if($(id)) $(id).value = '';
     });
+    
+    // Reseta número da ocorrência
     $('b_numero').value = DEFAULT_BOPC_NUM;
+    
+    // Reseta função pública
+    $('b_funcao').value = 'Delegado de Policia';
+    if($('b_funcao_outro')) {
+      $('b_funcao_outro').value = '';
+      $('b_funcao_outro').style.display = 'none';
+    }
+    
+    // Limpa listas (envolvidos e veículos, mas mantém policiais)
     involvedList = [];
+    vehicleList = [];
+    
+    // Re-renderiza as listas
     renderInvolved();
+    renderVehicles();
+    
+    // Limpa saída e preview
     $('saidaB').innerText = '';
     $('previewBody').innerHTML = '<small>Preview vazio — gere o BOPC para visualizar.</small>';
+    
+    // Salva o rascunho (com os policiais mantidos)
     saveDraftToStorage();
-    log('Campos do BOPC limpos');
+    
+    log('Campos limpos! Policiais mantidos.');
   }
 };
 
-$('btnLimparP').onclick = () => {
-  if (confirm('Limpar todos os campos da prisão?')) {
-    ['p_nome','p_rg','p_bopm','p_req','p_itens','p_artigos','p_policiais','p_obs'].forEach(id => {
-      if ($(id)) $(id).value = '';
-    });
-    $('p_obs').value = 'N/A';
-    $('saidaP').innerText = '';
-    saveDraftToStorage();
-    log('Campos da prisão limpos');
-  }
+$('btnLimparP').onclick = () => { 
+  ['p_nome','p_rg','p_bopm','p_req','p_itens','p_artigos','p_policiais','p_obs'].forEach(id => { 
+    if($(id)) $(id).value = ''; 
+  }); 
+  $('p_obs').value = 'N/A'; 
+  saveDraftToStorage(); 
+  log('Campos da prisão limpos'); 
 };
 
-// ========== DATA/HORA AGORA ==========
-$('btnNowB').onclick = () => {
-  const now = new Date();
-  $('b_data').value = now.toLocaleDateString('pt-BR');
-  $('b_hora').value = now.toLocaleTimeString('pt-BR').slice(0,5);
-  saveDraftToStorage();
-  log('Data e hora atualizadas');
-};
-
-// ========== ADICIONAR ENVOLVIDO ==========
-$('btnAddInv').onclick = () => {
-  const nome = $('inv_nome').value.trim();
-  const situ = $('inv_situ').value;
-  if (!nome) {
-    alert('Informe o nome do envolvido!');
-    return;
-  }
-  involvedList.push({ id: generateId(), nome, situ });
-  $('inv_nome').value = '';
-  renderInvolved();
-  saveDraftToStorage();
-  log('Envolvido adicionado');
-};
-
-// ========== FUNÇÃO PÚBLICA OUTRO ==========
-$('b_funcao').addEventListener('change', (e) => {
-  const outroInput = $('b_funcao_outro');
-  outroInput.style.display = e.target.value === '__outro__' ? 'block' : 'none';
-});
-
-// ========== PRISÃO - SELECIONAR ENVOLVIDO ==========
-$('selEnvolvido').addEventListener('change', (e) => {
-  const idx = parseInt(e.target.value);
-  if (!isNaN(idx) && involvedList[idx]) {
-    const inv = involvedList[idx];
-    const parsed = parseNomeRG(inv.nome);
-    if (parsed.nome && !$('p_nome').value) $('p_nome').value = parsed.nome;
-    if (parsed.rg && !$('p_rg').value) $('p_rg').value = parsed.rg;
-  }
-});
-
-// ========== MODAL HISTÓRICO ==========
+// ========== HISTÓRICO ==========
 $('btnHistOpen').onclick = () => {
-  renderHistoryModal();
+  const history = loadHistory();
+  const container = $('histList');
+  container.innerHTML = '';
+  history.forEach(rec => {
+    const div = document.createElement('div');
+    div.className = 'hist-item';
+    div.innerHTML = `<div class="hist-info"><div class="hist-date">${rec.data || 'N/I'}</div><div class="hist-desc">${rec.tipo} - ${rec.texto?.substring(0,80)}...</div></div><button class="btn btn-secondary" onclick="viewRecord('${rec.id}')">Ver</button>`;
+    container.appendChild(div);
+  });
   $('modalBack').style.display = 'flex';
-  showHistTab('bopc');
+};
+
+window.viewRecord = (id) => {
+  const rec = loadHistory().find(r => r.id === id);
+  if(rec) { $('viewContent').textContent = rec.texto; $('modalViewBack').style.display = 'flex'; }
 };
 
 $('btnCloseModal').onclick = () => $('modalBack').style.display = 'none';
 $('closeView').onclick = () => $('modalViewBack').style.display = 'none';
-$('btnClearHistory').onclick = () => {
-  if (confirm('⚠️ Isso vai apagar TODO o histórico permanentemente. Continuar?')) {
-    saveHistory([]);
-    renderHistoryModal();
-    log('Histórico completamente limpo');
-  }
-};
 
-function showHistTab(tab) {
-  $('sectionBopc').style.display = tab === 'bopc' ? 'block' : 'none';
-  $('sectionPrisao').style.display = tab === 'prisao' ? 'block' : 'none';
+// ========== FUNÇÃO PÚBLICA OUTRO ==========
+if($('b_funcao')) {
+  $('b_funcao').addEventListener('change', (e) => {
+    const outroInput = $('b_funcao_outro');
+    if(outroInput) {
+      outroInput.style.display = e.target.value === '__outro__' ? 'block' : 'none';
+    }
+  });
 }
-
-$('tabHistBopc').onclick = () => showHistTab('bopc');
-$('tabHistPrisao').onclick = () => showHistTab('prisao');
-
-// ========== GPT BUTTON ==========
-$('btnGPT').onclick = async () => {
-  const relato = $('b_relato').value.trim();
-  if (!relato) {
-    alert('Descreva os fatos antes de usar a IA!');
-    return;
-  }
-  
-  const prompt = `Atue como um delegado de polícia experiente e reescreva o seguinte relato de ocorrência policial de forma mais profissional, clara e técnica, mantendo todos os fatos importantes, seguindo o padrão de Boletim de Ocorrência Policial Civil (B.O.P.C):
-
-${relato}
-
-Por favor, mantenha a formalidade e a precisão dos fatos.`;
-  
-  try {
-    await navigator.clipboard.writeText(prompt);
-    log('✅ Prompt copiado! Cole no ChatGPT para melhorar o texto.');
-    window.open('https://chat.openai.com/', '_blank');
-  } catch (err) {
-    alert('Erro ao copiar. Verifique as permissões.');
-  }
-};
 
 // ========== COMPACT MODE ==========
 $('toggleCompact').onclick = () => {
   document.body.classList.toggle('compact');
   const isCompact = document.body.classList.contains('compact');
-  if (isCompact) {
-    localStorage.setItem(STORAGE_KEYS.COMPACT, '1');
-    $('toggleCompact').textContent = '📱 Modo Normal';
-  } else {
-    localStorage.removeItem(STORAGE_KEYS.COMPACT);
-    $('toggleCompact').textContent = '📱 Modo Compacto';
-  }
+  localStorage.setItem(STORAGE_KEYS.COMPACT, isCompact ? '1' : '');
+  log(isCompact ? 'Modo compacto ativado' : 'Modo normal ativado');
 };
-
-if (localStorage.getItem(STORAGE_KEYS.COMPACT)) {
+if(localStorage.getItem(STORAGE_KEYS.COMPACT) === '1') {
   document.body.classList.add('compact');
-  $('toggleCompact').textContent = '📱 Modo Normal';
 }
 
 // ========== AUTO-SAVE ==========
-const inputs = ['b_data','b_hora','b_unidade','b_numero','b_local','b_natureza','b_objetos','b_relato','b_resp','b_funcao','b_funcao_outro','p_nome','p_rg','p_bopm','p_req','p_itens','p_artigos','p_policiais','p_obs'];
-inputs.forEach(id => {
+['b_data','b_hora','b_unidade','b_numero','b_local','b_natureza','b_objetos','b_relato','b_resp','b_funcao','b_funcao_outro','p_nome','p_rg','p_bopm','p_req','p_itens','p_artigos','p_policiais','p_obs'].forEach(id => {
   const el = $(id);
-  if (el) el.addEventListener('input', () => saveDraftToStorage());
+  if(el) el.addEventListener('input', () => saveDraftToStorage());
 });
 
 // ========== TABS ==========
 document.querySelectorAll('.nav-tab[data-target]').forEach(btn => {
-  btn.addEventListener('click', () => {
+  btn.onclick = () => {
     document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const target = btn.dataset.target;
-    $('bopcCard').style.display = target === 'bopc' ? 'block' : 'none';
-    $('prisaoCard').style.display = target === 'prisao' ? 'block' : 'none';
-  });
+    $('bopcCard').style.display = btn.dataset.target === 'bopc' ? 'block' : 'none';
+    $('prisaoCard').style.display = btn.dataset.target === 'prisao' ? 'block' : 'none';
+  };
 });
 
 // ========== INIT ==========
 function init() {
-  if (!$('b_numero').value) $('b_numero').value = DEFAULT_BOPC_NUM;
+  if(!$('b_numero').value) $('b_numero').value = DEFAULT_BOPC_NUM;
   restoreDraft();
-  renderInvolved();
-  log('Sistema DAS Civil iniciado - Versão 2.0');
+  log('Sistema DAS Civil v4.0 - Com Policiais e Veículos!');
 }
-
 init();
 </script>
 </body>
